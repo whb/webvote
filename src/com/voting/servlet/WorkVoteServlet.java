@@ -2,7 +2,6 @@ package com.voting.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -125,6 +124,7 @@ public class WorkVoteServlet extends HttpServlet {
 			int totalCount = workOperate.findTotalCount(workType);
 			
 			List<Work> simpleVoteWorks = workOperate.findTempWorks(map);
+			changWorkListFileName(workType, simpleVoteWorks);
 
 			request.setAttribute("works", articals);
 			request.setAttribute("pageSize", Constant.WORK_PAGE_SIZE);
@@ -155,17 +155,17 @@ public class WorkVoteServlet extends HttpServlet {
 		return false;
 	}
 
-	private void changWorkListFileName(String workType, List<Work> articals) {
+	private void changWorkListFileName(String workType, List<Work> workList) {
 		if (Constant.WORK_TYPE_JPG.equals(workType)){
-			changeWorkFileName(articals, Constant.JPG_SMALL_PATH);				
+			changeWorkFileName(workList, Constant.JPG_SMALL_PATH);				
 		}else{
-			changeWorkFileName(articals, Constant.FLV_SMALL_PATH);	
+			changeWorkFileName(workList, Constant.FLV_SMALL_PATH);	
 		}
 	}
 
-	private void changeWorkFileName(List<Work> articals, String path) {
-		for(int i = 0; i < articals.size(); i++){
-			Work work = articals.get(i);
+	private void changeWorkFileName(List<Work> workList, String path) {
+		for(int i = 0; i < workList.size(); i++){
+			Work work = workList.get(i);
 			work.setWorkFileName(path+work.getWorkFileName());
 		}
 	}
