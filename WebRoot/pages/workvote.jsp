@@ -1,4 +1,6 @@
-﻿<%@ include file="/common/taglibs.jsp"%>
+﻿<%@ page import="java.util.HashMap" %>
+
+<%@ include file="/common/taglibs.jsp"%>
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -24,7 +26,7 @@
     }
 	
 	function addVoteCart(item) {
-		var imageClone = item.children("img").clone();
+		var imageClone = item.find("img").clone();
 		var nameClone = item.find(".name").clone();
 		var link = $("<a/>", {
 			text: 'delete',
@@ -177,7 +179,16 @@ margin:0 1em 1em 0;
 	</c:if>
 	</ul>	
 	<div id="voteCommit">
-	<input type="button" id="voteButton" value="投票" disabled="${sessionScope.voteButtonStatus}" />
+	<%
+		HashMap<String, String> map = (HashMap<String, String>)session.getAttribute("jpgVoteDatas");
+		if(map == null || map.size() == 0 || map.size() > 5){
+			request.setAttribute("isInvalidVote", true);
+		} else {
+			request.setAttribute("isInvalidVote", false);
+		}
+		
+	%>
+	<input type="button" id="voteButton" value="投票" <c:if test="${isInvalidVote}">disabled="disabled"</c:if> />
 	</div>
 </div>
 

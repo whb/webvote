@@ -24,7 +24,6 @@ public class WorkVoteServlet extends HttpServlet {
 	WebApplicationContext applicationContext;
 	WorksOperate workOperate;
 	HashMap<String, String> voteWorkIds = new HashMap<String, String>();
-	String voteButtonStatus ;
 
 	private static final long serialVersionUID = -2731450177616406834L;
 
@@ -47,7 +46,7 @@ public class WorkVoteServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		String method = request.getParameter("method");
 		HttpSession session =  request.getSession();
-		boolean activeTag = isActiveDate();
+
 		if ("vote".equals(method)) {//投票
 			
 			String remoteIp = CommonTool.getIpAddress(request);
@@ -68,17 +67,8 @@ public class WorkVoteServlet extends HttpServlet {
 			writer.write((String)map.get("msg"));
 		} else if ("templateSaveVotes".equals(method)){//添加选择的作品
 			HashMap<String, String> map = (HashMap<String, String>)session.getAttribute("jpgVoteDatas");
-			
-			if(isActiveDate()){
-				voteButtonStatus = "disable";
-			}else if(map!= null && map.size() == Constant.VOTE_WORKS_SIZE){
-				voteButtonStatus = "disable";
-			}else{
-				voteButtonStatus = "enable";
-				voteWorkIds.put(request.getParameter("workId"),request.getParameter("workId"));
-				session.setAttribute("jpgVoteDatas", voteWorkIds);
-			}
-			session.setAttribute("voteButtonStatus", voteButtonStatus);
+			voteWorkIds.put(request.getParameter("workId"),request.getParameter("workId"));
+			session.setAttribute("jpgVoteDatas", voteWorkIds);
 			System.out.println(((HashMap<String, String>)session.getAttribute("jpgVoteDatas")).size());
 			
 		}else if ("templateDeleteVotes".equals(method)){//删除选择的作品
@@ -132,13 +122,6 @@ public class WorkVoteServlet extends HttpServlet {
 			request.setAttribute("currentNo", prePageNo);
 			request.setAttribute("simpleWorks", simpleVoteWorks);
 			request.setAttribute("workTypeValue", workType);
-			
-			if(isActiveDate()){
-				voteButtonStatus = "disable";
-			}else if(map == null || map.size() == 0){
-				voteButtonStatus = "disable";
-			}
-			session.setAttribute("voteButtonStatus", voteButtonStatus);
 			
 			RequestDispatcher requestDispatcher = request
 					.getRequestDispatcher("/pages/workvote.jsp");
