@@ -27,7 +27,12 @@
     }
 
     function voteAreaPageCtrl() {
-        
+        var voteWorkNum = $('#voteCart > li').length;
+    	if( voteWorkNum >0 && voteWorkNum <=<%=Constant.VOTE_WORKS_SIZE%>) {
+    		$('#voteButton').removeAttr("disabled");
+    	} else {
+    		$('#voteButton').attr("disabled", true);
+    	}
     }
 	
 	function addVoteCart(item) {
@@ -79,6 +84,7 @@
 			origin.removeClass("added");
 			origin.find(".addLink").show();
 			commiteData("templateDeleteVotes", $(this).attr('href'));
+			voteAreaPageCtrl();
 		});
 	}	
 
