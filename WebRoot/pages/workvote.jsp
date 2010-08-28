@@ -1,4 +1,5 @@
 ﻿<%@ page import="java.util.HashMap" %>
+<%@ page import="com.voting.util.Constant" %>
 
 <%@ include file="/common/taglibs.jsp"%>
 
@@ -24,6 +25,10 @@
 			current_page:${currentNo}
         });
     }
+
+    function voteAreaPageCtrl() {
+        
+    }
 	
 	function addVoteCart(item) {
 		var imageClone = item.find("img").clone();
@@ -38,11 +43,13 @@
 				origin.removeClass("added");
 				origin.find(".addLink").show();
 				commiteData("templateDeleteVotes", $(this).attr('href'));
+				voteAreaPageCtrl();
 		}
 		});
 		var p = $("<p/>").append(nameClone).append(link);
 		var voteCartLi = $("<li/>").append(imageClone).append(p);
 		$('#voteCart').append(voteCartLi);
+		voteAreaPageCtrl();
 	}
 	
 	function commiteData(method, dt){ 
@@ -123,6 +130,11 @@ html, body {margin:0; padding:20px; font-size:0.95em;}
 	text-align:center; background-color:#CCFFCC;
 }
 
+/* for ie6 \*/
+* html #toVote {height:300px}
+/* ie6 end */
+
+
 li {margin: 10px; height: 150px;}
 
 
@@ -159,7 +171,7 @@ margin:0 1em 1em 0;
 			投票数：${work.voteCount}
 			</p>
 		</li>
-	</c:forEach>		
+	</c:forEach>	
 	</ul>
 	<div id="pagination">pagination</div>
 </div>
@@ -181,7 +193,7 @@ margin:0 1em 1em 0;
 	<div id="voteCommit">
 	<%
 		HashMap<String, String> map = (HashMap<String, String>)session.getAttribute("jpgVoteDatas");
-		if(map == null || map.size() == 0 || map.size() > 5){
+		if(map == null || map.size() == 0 || map.size() > Constant.VOTE_WORKS_SIZE){
 			request.setAttribute("isInvalidVote", true);
 		} else {
 			request.setAttribute("isInvalidVote", false);
