@@ -1,0 +1,13 @@
+[PropertyInfo]
+discuss_commond,String,false,false,discuss_commond,discuss_commond,true,<default>
+discuss_status,String,false,false,discuss_status,discuss_status,true,<default>
+discuss_time,String,false,false,discuss_time,discuss_time,true,<default>
+works_author,String,false,false,works_author,works_author,true,<default>
+works_id,int,false,false,works_id,works_id,true,<default>
+works_title,String,false,false,works_title,works_title,true,<default>
+discuss_id,int,false,false,discuss_id,discuss_id,true,<default>
+[IconNames]
+
+
+
+

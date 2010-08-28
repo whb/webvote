@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.4" 
+	xmlns="http://java.sun.com/xml/ns/j2ee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+	http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	
+	<display-name>webvote</display-name>
+    <!-- Context Configuration locations for Spring XML files -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            classpath*:applicationContext.xml
+        </param-value>
+    </context-param>
+    
+	<listener>  
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>  
+	</listener>
+	
+	 
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
+  <display-name>oushi_vote</display-name>
+  <servlet>
+    <servlet-name>admin_login_servlet</servlet-name>
+    <servlet-class>com.voting.servlet.Admin_login_servlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>admin_login_servlet</servlet-name>
+    <url-pattern>/admin_login_servlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>discuss_status_servlet</servlet-name>
+    <servlet-class>com.voting.servlet.Discuss_status_servlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>discuss_status_servlet</servlet-name>
+    <url-pattern>/discuss_status_servlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>dead_servlet</servlet-name>
+    <servlet-class>com.voting.servlet.Dead_servlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>dead_servlet</servlet-name>
+    <url-pattern>/dead_servlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>workVoteServlet</servlet-name>
+    <servlet-class>com.voting.servlet.WorkVoteServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>workVoteServlet</servlet-name>
+    <url-pattern>/workvote</url-pattern>
+  </servlet-mapping>  
+</web-app>
+

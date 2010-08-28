@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>欧时网投票系统后台</title>
+<script language="JavaScript" src="../js/login_yz.js" type="" ></script>
+
+<STYLE>
+.OkMsg {
+	BORDER-RIGHT: #00be00 1px solid; PADDING-RIGHT: 5px; BORDER-TOP: #00be00 1px solid; PADDING-LEFT: 25px; BACKGROUND: url(../imgs/standard_msg_ok.gif) #e6ffe6 no-repeat 5px 5px; PADDING-BOTTOM: 5px; BORDER-LEFT: #00be00 1px solid; COLOR: #000; PADDING-TOP: 5px; BORDER-BOTTOM: #00be00 1px solid; HEIGHT: 15px
+}
+.WarningMsg {
+	BORDER-RIGHT: #00a8ff 1px solid; PADDING-RIGHT: 5px; BORDER-TOP: #00a8ff 1px solid; PADDING-LEFT: 25px; BACKGROUND: url(../imgs/standard_msg_warning.gif) #e2f5ff no-repeat 5px 5px; PADDING-BOTTOM: 5px; BORDER-LEFT: #00a8ff 1px solid; COLOR: #000; PADDING-TOP: 5px; BORDER-BOTTOM: #00a8ff 1px solid; HEIGHT: 15px
+}
+.ErrorMsg {
+	BORDER-RIGHT: #f60 1px solid; PADDING-RIGHT: 5px; BORDER-TOP: #f60 1px solid; PADDING-LEFT: 25px; BACKGROUND: url(../imgs/standard_msg_error.gif) #fff2e9 no-repeat 5px 5px; PADDING-BOTTOM: 5px; BORDER-LEFT: #f60 1px solid; COLOR: #000; PADDING-TOP: 5px; BORDER-BOTTOM: #f60 1px solid; HEIGHT: 15px
+}
+.l-bg {
+	BACKGROUND-POSITION: center top; BACKGROUND-ATTACHMENT: scroll; BACKGROUND-IMAGE: url(images/l_bg.jpg); BACKGROUND-REPEAT: repeat-x
+}
+</STYLE>
+
+<STYLE type=text/css>
+.lt {
+	PADDING-RIGHT: 12px; PADDING-LEFT: 0px; FONT-WEIGHT: bold; FONT-SIZE: 13px; PADDING-BOTTOM: 0px; COLOR: #2270d2; PADDING-TOP: 2px
+}
+TD {
+	FONT-SIZE: 12px; COLOR: #666666
+}
+</STYLE>
+
+<STYLE type=text/css>
+.text-input {
+	BORDER-RIGHT: #b2b2b2 1px solid; BORDER-TOP: #b2b2b2 1px solid; BORDER-LEFT: #b2b2b2 1px solid; WIDTH: 155px; COLOR: #dd0000; BORDER-BOTTOM: #b2b2b2 1px solid; HEIGHT: 20px; BACKGROUND-COLOR: #ffffff
+}
+.text-input2 {
+	BORDER-RIGHT: #b2b2b2 1px solid; BORDER-TOP: #b2b2b2 1px solid; BORDER-LEFT: #b2b2b2 1px solid; WIDTH: 70px; COLOR: #dd0000; BORDER-BOTTOM: #b2b2b2 1px solid; HEIGHT: 20px; BACKGROUND-COLOR: #ffffff
+}
+.login-b {
+	BORDER-RIGHT: 0px solid; BORDER-TOP: 0px solid; BACKGROUND: url(images/login_b.gif) no-repeat center center; BORDER-LEFT: 0px solid; WIDTH: 70px; BORDER-BOTTOM: 0px solid; HEIGHT: 20px
+}
+.STYLE4 {font-size: 18px}
+</STYLE>
+
+</head>
+<BODY bgColor=#999999 leftMargin=0 topMargin=0 
+onload=document.loginform.account.focus(); marginheight="0" 
+marginwidth="0"><BR><BR><BR><BR>
+<TABLE class=l-bg height=400 cellSpacing=0 cellPadding=0 width=753 align=center 
+border=0><IFRAME id=frameCheckForm name=frameCheckForm src="about:blank" 
+  width=0 scrolling=no height=0></IFRAME>
+  <TBODY>
+  <TR>
+    <TD width=35>&nbsp;</TD>
+    <TD vAlign=top align=left width=476><BR><BR><BR>
+      <span class="STYLE4">欧时网投票系统后台登录</span><BR>
+      <BR>
+      <form action="" name="form_login" method="POST">
+      <TABLE height=120 cellSpacing=0 cellPadding=3 width=225 
+      background=images/login_bg.gif border=0>
+        <TBODY>
+        <TR>
+          <TD vAlign=top align=middle width=413>
+            <TABLE cellSpacing=0 cellPadding=2 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD class=lt vAlign=center align=middle width="42%">
+                  <TABLE cellSpacing=0 cellPadding=0 width=75 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD width=20><INPUT id=remeber2 type=checkbox value=1 
+                        name=remember></TD>
+                      <TD class=text width=55><LABEL 
+                      for=remeber2>记住帐号</LABEL></TD></TR></TBODY></TABLE></TD>
+                <TD class=lt vAlign=center align=right width="58%">请登录</TD></TR>
+              <TR>
+                <TD colSpan=2>
+                  <TABLE cellSpacing=0 cellPadding=3 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD class=text align=right width="21%" height=20>帐 号:</TD>
+                      <TD width="79%"><INPUT class=text-input id=account 
+                        tabIndex=1 name=admin_name></TD></TR>
+                    <TR>
+                      <TD class=text align=right height=20>密 码:</TD>
+                      <TD><INPUT class=text-input id=pwd3 tabIndex=2 
+                        type=password name=admin_pwd></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><BR>
+      <TABLE cellSpacing=0 cellPadding=4 width=353 border=0>
+        <TBODY>
+        <TR>
+          <TD 
+          width=166 align="right"><input type="submit" name="sub" value="登录" onClick="return fun_login();"/>&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="reset" name="res" value="重置" /></TD>
+          <TD width=171><SPAN id=logining_info 
+            style="LETTER-SPACING: 2px"></SPAN></TD>
+        </TR></TBODY></TABLE></FORM></TD>
+    <TD style="PADDING-RIGHT: 20px; PADDING-TOP: 20px" vAlign=top align=right 
+    width=242>&nbsp;</TD>
+  </TR></TBODY></TABLE>
+<TABLE height=20 cellSpacing=0 cellPadding=2 width=753 align=center border=0>
+  <TBODY>
+  <TR>
+    <TD vAlign=center align=right width=1043 bgColor=#2270d2><FONT 
+      face="Arial, Helvetica, sans-serif" color=#ffffff>©2010 oushinet.com - 
+      All Rights Reserved.</FONT></TD></TR></TBODY></TABLE></BODY></HTML>
