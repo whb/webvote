@@ -33,6 +33,11 @@
     	} else {
     		$('#voteButton').attr("disabled", true);
     	}
+
+    	$('#voteMsg').empty();
+    	if( voteWorkNum ><%=Constant.VOTE_WORKS_SIZE%>) {
+    		$('#voteMsg').append("您选择的作品超过5件");
+    	} 
     }
 	
 	function addVoteCart(item) {
@@ -115,6 +120,8 @@
 			itemForm.action="webvote?workType=checkedVal";
 			itemForm.submit();
 		});
+
+		voteAreaPageCtrl();
     });
 </script>
 
@@ -182,10 +189,10 @@ margin:0 1em 1em 0;
 	<div id="pagination">pagination</div>
 </div>
 
-
 <div id="toVote">
+
 	<h3>投票区</h3>
-	<div id="voteMsg"></div>
+	<div id="voteMsg">${voteMsg}</div>
 	<ul id="voteCart">
 	<c:if test="${fn:length(simpleWorks)> 0}">
 		<c:forEach var="simpleWork" items="${simpleWorks}">
@@ -197,16 +204,7 @@ margin:0 1em 1em 0;
 	</c:if>
 	</ul>	
 	<div id="voteCommit">
-	<%
-		HashMap<String, String> map = (HashMap<String, String>)session.getAttribute("jpgVoteDatas");
-		if(map == null || map.size() == 0 || map.size() > Constant.VOTE_WORKS_SIZE){
-			request.setAttribute("isInvalidVote", true);
-		} else {
-			request.setAttribute("isInvalidVote", false);
-		}
-		
-	%>
-	<input type="button" id="voteButton" value="投票" <c:if test="${isInvalidVote}">disabled="disabled"</c:if> />
+	<input type="button" id="voteButton" value="投票" />
 	</div>
 </div>
 
