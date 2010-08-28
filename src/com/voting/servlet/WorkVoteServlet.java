@@ -23,7 +23,6 @@ import com.voting.util.Constant;
 public class WorkVoteServlet extends HttpServlet {
 	WebApplicationContext applicationContext;
 	WorksOperate workOperate;
-	HashMap<String, String> voteWorkIds = new HashMap<String, String>();
 
 	private static final long serialVersionUID = -2731450177616406834L;
 
@@ -66,7 +65,8 @@ public class WorkVoteServlet extends HttpServlet {
 			PrintWriter writer = response.getWriter();
 			writer.write((String)map.get("msg"));
 		} else if ("templateSaveVotes".equals(method)){//添加选择的作品
-			HashMap<String, String> map = (HashMap<String, String>)session.getAttribute("jpgVoteDatas");
+			HashMap<String, String> voteWorkIds = (HashMap<String, String>)session.getAttribute("jpgVoteDatas");
+			if (voteWorkIds == null) voteWorkIds = new HashMap<String, String>();
 			voteWorkIds.put(request.getParameter("workId"),request.getParameter("workId"));
 			session.setAttribute("jpgVoteDatas", voteWorkIds);
 			System.out.println(((HashMap<String, String>)session.getAttribute("jpgVoteDatas")).size());
