@@ -184,7 +184,7 @@ margin:0 1em 1em 0;
 	<c:if test="${fn:length(simpleWorks)> 0}">
 		<c:forEach var="simpleWork" items="${simpleWorks}">
 			<li>
-			<img src="${simpleWork.workFileName}" alt="${simpleWork.workFileName}" />
+			<img src="${simpleWork.imageUrl}" />
 			<p><span class="name">${simpleWork.workTitle}</span><a href="${simpleWork.workId}">delete</a></p>
 			</li>
 		</c:forEach>
