@@ -34,9 +34,9 @@
     		$('#voteButton').attr("disabled", true);
     	}
 
-    	$('#voteMsg').empty();
+    	$('#voteMsg').empty().removeClass();
     	if( voteWorkNum ><%=Constant.VOTE_WORKS_SIZE%>) {
-    		$('#voteMsg').append("您选择的作品超过5件");
+    		$('#voteMsg').addClass('warning').append("您选择的作品超过5件");
     	} 
     }
 	
@@ -132,7 +132,7 @@ ul{
   margin: 0;
 }
 
-li.added { background-color:orange; }
+li.added { text-color:orange; }
 
 html, body {margin:0; padding:20px; font-size:0.95em;} 
 #main {float:left; width: 60%; padding-right:10px;}
@@ -158,6 +158,36 @@ margin:0 1em 1em 0;
 }
 
 #articles .link {float:right;}
+
+
+
+.info, .success, .warning, .error, .validation {
+  border: 1px solid;
+  margin: 5px 0px;
+  padding:15px 10px;
+  background-repeat: no-repeat;
+  background-position: 10px center;
+}
+.info {
+  color: #00529B;
+  background-color: #BDE5F8;
+  background-image: url('image/icon/info.png');
+}
+.success {
+  color: #4F8A10;
+  background-color: #DFF2BF;
+  background-image:url('image/icon/success.png');
+}
+.warning {
+  color: #9F6000;
+  background-color: #FEEFB3;
+  background-image: url('image/icon/warning.png');
+}
+.error {
+  color: #D8000C;
+  background-color: #FFBABA;
+  background-image: url('image/icon/error.png');
+}
 
 </style>
 
