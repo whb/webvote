@@ -109,12 +109,12 @@ public class WorkVoteServlet extends HttpServlet {
 			String prePageNo = getCurrentPageNo(request.getParameter("pageNo"));
 
 			List<Work> articals = workOperate.findWorks(workType, prePageNo, map);
-			changWorkListFileName(workType, articals);
+			changeWorkFileName(articals);
 			
 			int totalCount = workOperate.findTotalCount(workType);
 			
 			List<Work> simpleVoteWorks = workOperate.findTempWorks(map);
-			changWorkListFileName(workType, simpleVoteWorks);
+			changeWorkFileName(simpleVoteWorks);
 
 			request.setAttribute("works", articals);
 			request.setAttribute("pageSize", Constant.WORK_PAGE_SIZE);
@@ -138,18 +138,17 @@ public class WorkVoteServlet extends HttpServlet {
 		return false;
 	}
 
-	private void changWorkListFileName(String workType, List<Work> workList) {
-		if (Constant.WORK_TYPE_JPG.equals(workType)){
-			changeWorkFileName(workList, Constant.JPG_SMALL_PATH);				
-		}else{
-			changeWorkFileName(workList, Constant.FLV_SMALL_PATH);	
-		}
-	}
 
-	private void changeWorkFileName(List<Work> workList, String path) {
+	private void changeWorkFileName(List<Work> workList) {
 		for(int i = 0; i < workList.size(); i++){
+			String path;
 			Work work = workList.get(i);
-			work.setWorkFileName(path+work.getWorkFileName());
+			if (Constant.WORK_TYPE_JPG.equals(work.getWorkType())){
+				path = Constant.JPG_SMALL_PATH;
+			}else{
+				path = Constant.FLV_SMALL_PATH;
+			}
+			work.setImageUrl(path+work.getWorkFileName());
 		}
 	}
 

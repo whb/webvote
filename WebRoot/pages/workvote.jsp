@@ -151,7 +151,7 @@ margin:0 1em 1em 0;
 				<a  <c:if test="${work.readyVoted}">style="display:none"</c:if> class="addLink" href="#">add</a>
 				<a href="workvote?method=goToDiscuss&workId=${work.workId}">评论</a>
 			</div>
-			<a href="${work.videoUrl}" class="workUrlLink"><img src="${work.workFileName}"  alt="${work.workFileName}"/></a>
+			<a href="${work.videoUrl}" class="workUrlLink"><img src="${work.imageUrl}" /></a>
 			<p>
 			作品名称：<span class="name">${work.workTitle}</span><br />
 			作者：${work.workAuthor}<br />

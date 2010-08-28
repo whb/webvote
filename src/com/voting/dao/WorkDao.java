@@ -26,7 +26,7 @@ public class WorkDao {
 
 
 	public Work findWork(String workId){
-		String sql = "select works_id, works_title, works_author,works_file_name,works_release_time, works_recommond from works_info where works_id=?";
+		String sql = "select works_id, works_title, works_author,works_file_name,works_release_time, works_recommond, works_type from works_info where works_id=?";
 		
 		RowMapper<Work> mapper = new RowMapper<Work>() {
 			public Work mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -37,6 +37,7 @@ public class WorkDao {
 				work.setWorkFileName(rs.getString("works_file_name"));
 				work.setWorkReleaseTime(rs.getDate("works_release_time"));
 				work.setWorksRecommond(rs.getString("works_recommond"));
+				work.setWorkType(rs.getString("works_type"));
 				return work;
 			}
 		};
@@ -54,9 +55,9 @@ public class WorkDao {
 	public List<Work> findWorks(String type, int startLineNo, int step){
 		
 		StringBuffer sql = new StringBuffer();
-		sql.append("SELECT works.works_id as 'works_id', works.works_title as 'works_title', works.works_author as 'works_author',works.works_file_name as 'works_file_name',works.works_release_time as 'works_release_time', count(vote_info.vote_id) as 'count'")
+		sql.append("SELECT works.works_id as 'works_id', works.works_title as 'works_title', works.works_author as 'works_author',works.works_file_name as 'works_file_name',works.works_release_time as 'works_release_time', count(vote_info.vote_id) as 'count', works.works_type as 'works_type'")
 			.append(" from")
-			.append(" (select works_id, works_title, works_author,works_file_name,works_release_time from works_info where works_info.works_type = ?) works")
+			.append(" (select works_id, works_title, works_author,works_file_name,works_release_time,works_type from works_info where works_info.works_type = ?) works")
 			.append(" left join vote_info on vote_info.works_id = works.works_id GROUP BY works.works_id order by count desc, works.works_release_time desc")
 			.append(" limit ?,?");
 		
@@ -69,6 +70,7 @@ public class WorkDao {
 				work.setWorkAuthor(rs.getString("works_author"));
 				work.setWorkFileName(rs.getString("works_file_name"));
 				work.setWorkReleaseTime(rs.getDate("works_release_time"));
+				work.setWorkType(rs.getString("works_type"));
 				work.setVoteCount(rs.getInt("count"));
 				return work;
 			}

@@ -12,6 +12,25 @@ public class Work {
 	private int voteCount;
 	private boolean readyVoted;
 	private String videoUrl;
+	private String imageUrl;
+	private String workType;
+
+	
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+
+	public String getWorkType() {
+		return workType;
+	}
+
+	public void setWorkType(String workType) {
+		this.workType = workType;
+	}
 
 	public boolean isReadyVoted() {
 		return readyVoted;
