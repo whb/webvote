@@ -4,39 +4,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>评论</title>
 <script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src="js/jquery.validate.js"></script>
-<script type="text/javascript" src="js/additional-methods.js"></script>
 <link id="css" rel="stylesheet" href="css/discuss.css" type="text/css">
 <script type="text/javascript">
-	// 字符验证
-	jQuery.validator.addMethod("userName", function(value, element) {
-	return this.optional(element) || /^[\u0391-\uFFE5\w]+$/.test(value);
-	}, "用户名只能包括中文字、英文字母、数字和下划线");
-
-	//然后就可以使用这个规则了
-	$("#discussArea").validate({
-		// 验证规则
-		rules: {
-			username: {
-				userName: true,
-				rangelength: [5,20]
-			},
-			discussCommontArea: {
-				required: true,
-				rangelength: [10,450]
-			}
-		},
-		/* 设置错误信息 */
-		messages: {
-			userName: {
-				rangelength: "用户名必须在5-20个字符之间"
-			},
-			discussCommontArea:{
-				required: "请填写评论内容",
-				rangelength: "评论内容必须在10-450个字符之间"
-			}
-		}
-	}); 
 
 	function validationItems(name, common){
 		$("#discussMsg").empty();
@@ -49,9 +18,7 @@
 		if(common == null || common.length == 0){
 			$("#discussMsg").append("请填写评论内容").append("<br />");
 			checkflag = false;
-		}
-		
-		if(name.length<10 || name.length > 450){
+		}else if(name.length<10 || name.length > 450){
 			$("#discussMsg").append("评论内容必须在10-450个字符之间");
 			checkflag = false;
 		}
