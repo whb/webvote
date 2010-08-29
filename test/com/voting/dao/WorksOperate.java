@@ -1,14 +1,10 @@
 package com.voting.dao;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import com.voting.javabean.Discuss;
-import com.voting.javabean.Work;
 
 public class WorksOperate {
 	public static void main(String[] args) {
@@ -39,8 +35,8 @@ public class WorksOperate {
 		
 		System.out.println(recommondList.size());*/
 		
-		workDao.saveDisuss("3","测试评论测试评论3");
-		workDao.saveDisuss("4","测试评论测试评论4");
+		workDao.saveDisuss("3","匿名", "测试评论测试评论3");
+		workDao.saveDisuss("4","测试用户", "测试评论测试评论4");
 		
 	}
 }
