@@ -3,6 +3,7 @@ package com.voting.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -49,7 +50,7 @@ public class WorkVoteServlet extends HttpServlet {
 		if ("vote".equals(method)) {//投票
 			
 			String remoteIp = CommonTool.getIpAddress(request);
-			HashMap<String, String> votedWorkIdsMap = (HashMap<String, String>)session.getAttribute("jpgVoteDatas");
+			LinkedHashMap<String, String> votedWorkIdsMap = (LinkedHashMap<String, String>)session.getAttribute("jpgVoteDatas");
 
 			HashMap<Object, Object> map = workOperate.saveCheckedWorks(votedWorkIdsMap, remoteIp);
 			boolean insertFlay = (Boolean)map.get("flag");
@@ -65,18 +66,18 @@ public class WorkVoteServlet extends HttpServlet {
 			PrintWriter writer = response.getWriter();
 			writer.write((String)map.get("msg"));
 		} else if ("templateSaveVotes".equals(method)){//添加选择的作品
-			HashMap<String, String> voteWorkIds = (HashMap<String, String>)session.getAttribute("jpgVoteDatas");
-			if (voteWorkIds == null) voteWorkIds = new HashMap<String, String>();
+			LinkedHashMap<String, String> voteWorkIds = (LinkedHashMap<String, String>)session.getAttribute("jpgVoteDatas");
+			if (voteWorkIds == null) voteWorkIds = new LinkedHashMap<String, String>();
 			voteWorkIds.put(request.getParameter("workId"),request.getParameter("workId"));
 			session.setAttribute("jpgVoteDatas", voteWorkIds);
-			System.out.println(((HashMap<String, String>)session.getAttribute("jpgVoteDatas")).size());
+			System.out.println(((LinkedHashMap<String, String>)session.getAttribute("jpgVoteDatas")).size());
 			
 		}else if ("templateDeleteVotes".equals(method)){//删除选择的作品
 			
-			HashMap<String, String> workIdMap = (HashMap<String, String>)session.getAttribute("jpgVoteDatas");
+			LinkedHashMap<String, String> workIdMap = (LinkedHashMap<String, String>)session.getAttribute("jpgVoteDatas");
 			workIdMap.remove(request.getParameter("workId"));
 			session.setAttribute("jpgVoteDatas", workIdMap);
-			System.out.println(((HashMap<String, String>)session.getAttribute("jpgVoteDatas")).size());
+			System.out.println(((LinkedHashMap<String, String>)session.getAttribute("jpgVoteDatas")).size());
 			
 		}else if ("goToDiscuss".equals(method)) {//到评论页面
 			String workId = request.getParameter("workId");
@@ -103,7 +104,7 @@ public class WorkVoteServlet extends HttpServlet {
 			writer.write(msg);
 			
 		} else {// select jpg works as default\
-			HashMap<String, String> map = (HashMap<String, String>)session.getAttribute("jpgVoteDatas");
+			LinkedHashMap<String, String> map = (LinkedHashMap<String, String>)session.getAttribute("jpgVoteDatas");
 			
 			String workType = getWorkType(request, session);
 			String prePageNo = getCurrentPageNo(request.getParameter("pageNo"));
