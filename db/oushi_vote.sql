@@ -24,39 +24,38 @@ CREATE TABLE `discuss_info` (
   `discuss_commond` varchar(1000) NOT NULL,
   `discuss_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `discuss_status` varchar(1) NOT NULL DEFAULT '0',
-  `discuss_menber` varchar(50) DEFAULT '匿名',
-  `discuss_national` varchar(300),
+  `discuss_member` varchar(50) DEFAULT '匿名',
   PRIMARY KEY (`discuss_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of discuss_info
 -- ----------------------------
-INSERT INTO `discuss_info` VALUES ('1', '3', '测试评论测试评论3', '2010-08-20 15:11:12', '1','评论用户','中国');
-INSERT INTO `discuss_info` VALUES ('2', '4', '测试评论测试评论4', '2010-08-20 15:11:12', '1','评论用户','中国');
-INSERT INTO `discuss_info` VALUES ('3', '3', '测试评论测试评论3', '2010-08-20 15:11:43', '1','评论用户','中国');
-INSERT INTO `discuss_info` VALUES ('4', '4', '测试评论测试评论4', '2010-08-20 15:11:43', '1','评论用户','中国');
-INSERT INTO `discuss_info` VALUES ('5', '3', '测试评论测试评论3', '2010-08-20 15:11:46', '1','评论用户','中国');
-INSERT INTO `discuss_info` VALUES ('6', '4', '测试评论测试评论4', '2010-08-20 15:11:46', '1','评论用户','中国');
-INSERT INTO `discuss_info` VALUES ('7', '3', '测试评论测试评论3', '2010-08-20 15:12:12', '1','评论用户','中国');
-INSERT INTO `discuss_info` VALUES ('8', '4', '测试评论测试评论4', '2010-08-20 15:12:12', '1','评论用户','中国');
-INSERT INTO `discuss_info` VALUES ('9', '4', 'discussCommond测试discuss', '2010-08-25 10:00:54', '1','评论用户','中国');
-INSERT INTO `discuss_info` VALUES ('10', '4', '我要评论 discussCommond 我要评论 discussCommond 我要评论 discussCommond 我要评论 discussCommond 我要评论 discussCommond 我要评论 discussCommond 我要评论 discussCommond ', '2010-08-25 10:06:04', '1','评论用户','中国');
-INSERT INTO `discuss_info` VALUES ('11', '4', '我要评论 discussCommond 我要评论 discussCommond', '2010-08-25 10:38:30', '1','评论用户','中国');
-INSERT INTO `discuss_info` VALUES ('12', '4', '我要评论 discussCommond 我要评论 discussCommond', '2010-08-25 10:38:34', '1','评论用户','中国');
-INSERT INTO `discuss_info` VALUES ('13', '4', '我要评论 discussCommond 我要评论 discussCommond', '2010-08-25 10:38:36', '1','评论用户','中国');
-INSERT INTO `discuss_info` VALUES ('14', '4', '我要评论 discussCommond 我要评论 discussCommond', '2010-08-25 10:39:16', '0','评论用户','中国');
-INSERT INTO `discuss_info` VALUES ('15', '4', '我要评论 discussCommond 我要评论 discussCommond', '2010-08-25 10:41:38', '0','评论用户','中国');
-INSERT INTO `discuss_info` VALUES ('16', '4', '下午评论', '2010-08-25 13:45:47', '1','评论用户','中国');
-INSERT INTO `discuss_info` VALUES ('17', '4', '再次评论', '2010-08-25 13:53:45', '0','评论用户','中国');
-INSERT INTO `discuss_info` VALUES ('18', '4', 'go no discuss', '2010-08-25 14:12:20', '0','评论用户','中国');
-INSERT INTO `discuss_info` VALUES ('19', '4', 'ping lun', '2010-08-25 14:13:27', '0','评论用户','中国');
-INSERT INTO `discuss_info` VALUES ('20', '4', 'jsp\n入门与提高', '2010-08-25 14:14:44', '0','评论用户','中国');
-INSERT INTO `discuss_info` VALUES ('21', '5', '评论评论', '2010-08-26 13:38:22', '0','评论用户','中国');
-INSERT INTO `discuss_info` VALUES ('22', '5', '评论', '2010-08-26 13:38:34', '0','评论用户','中国');
-INSERT INTO `discuss_info` VALUES ('23', '11', '评FLV', '2010-08-26 13:39:49', '1','评论用户','中国');
-INSERT INTO `discuss_info` VALUES ('24', '12', '', '2010-08-26 17:03:32', '0','评论用户','中国');
-INSERT INTO `discuss_info` VALUES ('25', '4', '我要评论 discussCommond 我要评论 discussCommond 111111111111111111', '2010-08-27 13:34:20', '0','评论用户','中国');
+INSERT INTO `discuss_info` VALUES ('1', '3', '测试评论测试评论3', '2010-08-20 15:11:12', '1','评论用户');
+INSERT INTO `discuss_info` VALUES ('2', '4', '测试评论测试评论4', '2010-08-20 15:11:12', '1','评论用户');
+INSERT INTO `discuss_info` VALUES ('3', '3', '测试评论测试评论3', '2010-08-20 15:11:43', '1','评论用户');
+INSERT INTO `discuss_info` VALUES ('4', '4', '测试评论测试评论4', '2010-08-20 15:11:43', '1','评论用户');
+INSERT INTO `discuss_info` VALUES ('5', '3', '测试评论测试评论3', '2010-08-20 15:11:46', '1','评论用户');
+INSERT INTO `discuss_info` VALUES ('6', '4', '测试评论测试评论4', '2010-08-20 15:11:46', '1','评论用户');
+INSERT INTO `discuss_info` VALUES ('7', '3', '测试评论测试评论3', '2010-08-20 15:12:12', '1','评论用户');
+INSERT INTO `discuss_info` VALUES ('8', '4', '测试评论测试评论4', '2010-08-20 15:12:12', '1','评论用户');
+INSERT INTO `discuss_info` VALUES ('9', '4', 'discussCommond测试discuss', '2010-08-25 10:00:54', '1','评论用户');
+INSERT INTO `discuss_info` VALUES ('10', '4', '我要评论 discussCommond 我要评论 discussCommond 我要评论 discussCommond 我要评论 discussCommond 我要评论 discussCommond 我要评论 discussCommond 我要评论 discussCommond ', '2010-08-25 10:06:04', '1','评论用户');
+INSERT INTO `discuss_info` VALUES ('11', '4', '我要评论 discussCommond 我要评论 discussCommond', '2010-08-25 10:38:30', '1','评论用户');
+INSERT INTO `discuss_info` VALUES ('12', '4', '我要评论 discussCommond 我要评论 discussCommond', '2010-08-25 10:38:34', '1','评论用户');
+INSERT INTO `discuss_info` VALUES ('13', '4', '我要评论 discussCommond 我要评论 discussCommond', '2010-08-25 10:38:36', '1','评论用户');
+INSERT INTO `discuss_info` VALUES ('14', '4', '我要评论 discussCommond 我要评论 discussCommond', '2010-08-25 10:39:16', '0','评论用户');
+INSERT INTO `discuss_info` VALUES ('15', '4', '我要评论 discussCommond 我要评论 discussCommond', '2010-08-25 10:41:38', '0','评论用户');
+INSERT INTO `discuss_info` VALUES ('16', '4', '下午评论', '2010-08-25 13:45:47', '1','评论用户');
+INSERT INTO `discuss_info` VALUES ('17', '4', '再次评论', '2010-08-25 13:53:45', '0','评论用户');
+INSERT INTO `discuss_info` VALUES ('18', '4', 'go no discuss', '2010-08-25 14:12:20', '0','评论用户');
+INSERT INTO `discuss_info` VALUES ('19', '4', 'ping lun', '2010-08-25 14:13:27', '0','评论用户');
+INSERT INTO `discuss_info` VALUES ('20', '4', 'jsp\n入门与提高', '2010-08-25 14:14:44', '0','评论用户');
+INSERT INTO `discuss_info` VALUES ('21', '5', '评论评论', '2010-08-26 13:38:22', '0','评论用户');
+INSERT INTO `discuss_info` VALUES ('22', '5', '评论', '2010-08-26 13:38:34', '0','评论用户');
+INSERT INTO `discuss_info` VALUES ('23', '11', '评FLV', '2010-08-26 13:39:49', '1','评论用户');
+INSERT INTO `discuss_info` VALUES ('24', '12', '', '2010-08-26 17:03:32', '0','评论用户');
+INSERT INTO `discuss_info` VALUES ('25', '4', '我要评论 discussCommond 我要评论 discussCommond 111111111111111111', '2010-08-27 13:34:20', '0','评论用户');
 
 -- ----------------------------
 -- Table structure for `video_info`

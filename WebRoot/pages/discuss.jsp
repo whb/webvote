@@ -8,7 +8,9 @@
     $(document).ready(function(){
 		$("#btnDiscuss").click(function(event){
 			$.post("workvote?method=discuss",
-				{discussCommond: $("#discussCommontArea").attr("value"),workId:${work.workId}},
+				{username: $("#username").attr("value"), 
+				 discussCommond: $("#discussCommontArea").attr("value"),
+				 workId:${work.workId}},
 				function(data) {
 					$("#discussMsg").html(data);
 					
@@ -63,9 +65,10 @@ li {margin-top: 5px; padding:5px; background-color:#ffffdd;}
 </div>
 
 <div id="discussArea">
-	<ul id="discussesUl">
+	用户名：<input type="text" id="username" name="username" /> <br />
 	<textarea rows="5" cols="80" id="discussCommontArea"></textarea><br />
 	<input type="button" id="btnDiscuss" value="评论" /><div id="discussMsg"></div><br />
+	<ul id="discussesUl">
 	<c:forEach var="discuss" items="${discussList}">
 	<li id="line">
 	评论时间：${discuss.discussTime} <br />评论内容：${discuss.discussCommond}

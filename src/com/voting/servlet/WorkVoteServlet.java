@@ -100,10 +100,11 @@ public class WorkVoteServlet extends HttpServlet {
 			requestDispatcher.forward(request, response);
 
 		} else if ("discuss".equals(method)) {//评论
-			String discussCommond = request.getParameter("discussCommond");;
+			String username = request.getParameter("username");
+			String discussCommond = request.getParameter("discussCommond");
 			String workId = request.getParameter("workId");
 			
-			String msg = workOperate.saveDisuss(workId, discussCommond);
+			String msg = workOperate.saveDisuss(workId, username, discussCommond);
 			
 			response.setCharacterEncoding("utf-8");
 			PrintWriter writer = response.getWriter();

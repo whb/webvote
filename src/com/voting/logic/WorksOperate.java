@@ -102,9 +102,9 @@ public class WorksOperate {
 		return 0;
 	}
 
-	public String saveDisuss(String workId, String discussCommond) {
+	public String saveDisuss(String workId, String username, String discussCommond) {
 		String msg;
-		int count = workDao.saveDisuss(workId, discussCommond);
+		int count = workDao.saveDisuss(workId, username, discussCommond);
 		if (count != 0){
 			msg = "评论成功";
 		}else{

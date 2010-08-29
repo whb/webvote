@@ -119,10 +119,10 @@ public class WorkDao {
 	}
 
 
-	public int saveDisuss(String workId, String discussCommond) {
-		String sql = "insert into discuss_info (works_id, discuss_commond) values(?, ?)";
+	public int saveDisuss(String workId, String username, String discussCommond) {
+		String sql = "insert into discuss_info (works_id, discuss_member, discuss_commond) values(?, ?, ?)";
 
-		return this.jdbcTemplate.update(sql, workId, discussCommond);
+		return this.jdbcTemplate.update(sql, workId, username, discussCommond);
 	}
 
 
