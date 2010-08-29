@@ -50,16 +50,16 @@ li {margin-top: 5px; padding:5px; background-color:#ffffdd;}
 <body id="discussWork">
 
 <div id="workArea">
-	<ul id="work">
-		<li>
+	<div id="work">
 		<img src="${work.imageUrl}" />
-		<span class="name">作品名称:${work.workTitle}</span>
-		作者：${work.workAuthor}
-		发布日期：${work.workReleaseTime}
-		投票数：${work.voteCount}
+		<p>
+		作品名称:<span class="name">${work.workTitle}</span> <br />
+		作者：${work.workAuthor}<br />
+		发布日期：${work.workReleaseTime}<br />
+		投票数：${work.voteCount}<br />
 		作品介绍：${work.worksRecommond}
-		</li>
-	</ul>
+		</p>
+	</div>
 </div>
 
 <div id="discussArea">
