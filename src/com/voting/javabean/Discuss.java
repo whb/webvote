@@ -3,6 +3,7 @@ package com.voting.javabean;
 import java.util.Date;
 
 import com.voting.util.Constant;
+import com.voting.util.National;
 
 public class Discuss {
 	private int discussId;
