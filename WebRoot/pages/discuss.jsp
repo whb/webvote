@@ -13,7 +13,7 @@
 				 workId:${work.workId}},
 				function(data) {
 					$('#discussMsg').html(data);
-		    		$('#discussMsg').delay(3000).fadeOut(1000);
+		    		$('#discussMsg').delay(5000).fadeOut(1500);
 				}
 			)
 		});
@@ -65,9 +65,9 @@ li {
 </div>
 
 <div id="discussArea">用户名： <input
-	onFocus="this.style.color='#000';if(this.value=='匿名用户') this.value='';"
-	onBlur="if(this.value==''){this.style.color='#CCC';this.value='匿名用户';}"
-	value="匿名用户" style="color: #CCC" type="text" id="username" /> <br />
+	onFocus="this.style.color='#000';if(this.value=='匿名') this.value='';"
+	onBlur="if(this.value==''){this.style.color='#CCC';this.value='匿名';}"
+	value="匿名" style="color: #CCC" type="text" id="username" /> <br />
 <textarea rows="5" cols="80" id="discussCommontArea"></textarea><br />
 <input type="button" id="btnDiscuss" value="评论" />
 <div id="discussMsg"></div>
@@ -75,8 +75,8 @@ li {
 <ul id="discussesUl">
 	<c:forEach var="discuss" items="${discussList}">
 	<li id="line">
-	评论者：${discuss.discussUsername}国籍：${discuss.discussIp}
-	评论时间：${discuss.discussTime} 评论内容：${discuss.discussCommond}
+	${discuss.discussUsername} | ${discuss.discussIp} | ${discuss.discussTime} <br />
+	${discuss.discussCommond}
 	</li>
 	</c:forEach>
 </ul>
