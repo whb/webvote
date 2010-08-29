@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
+import com.voting.javabean.Discuss;
 import com.voting.javabean.Work;
 import com.voting.logic.WorksOperate;
 import com.voting.util.CommonTool;
@@ -80,14 +81,10 @@ public class WorkVoteServlet extends HttpServlet {
 			session.setAttribute("jpgVoteDatas", workIdMap);
 		}else if ("goToDiscuss".equals(method)) {//到评论页面
 			String workId = request.getParameter("workId");
-			//String workType = getWorkType(request, session);
-
-			HashMap<Object, Object> workAndRecommondInfo = 
-				workOperate.findWorkAndRecommondInfo(workId);
-			
-			Work work = (Work)workAndRecommondInfo.get("oneWork");
+			Work work = workOperate.findWork(workId);
+			List<Discuss> discussList = workOperate.findRecommondInfo(workId); 
 			request.setAttribute("work", work);
-			request.setAttribute("discussList", workAndRecommondInfo.get("disusses"));
+			request.setAttribute("discussList", discussList);
 
 			RequestDispatcher requestDispatcher = request
 					.getRequestDispatcher("/pages/discuss.jsp");
