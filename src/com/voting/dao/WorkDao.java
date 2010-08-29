@@ -106,7 +106,7 @@ public class WorkDao {
 
 	public List<Discuss> findDisusses(String workId) {
 		
-		String sql = "select discuss_commond,discuss_time,works_id,discuss_id,discuss_username,discuss_ip  from discuss_info where discuss_status='1' and works_id=?";
+		String sql = "select discuss_commond,discuss_time,works_id,discuss_id,discuss_username,discuss_ip  from discuss_info where discuss_status='1' and works_id=? order by discuss_time desc";
 		RowMapper<Discuss> mapper = new RowMapper<Discuss>() {
 			public Discuss mapRow(ResultSet rs, int rowNum) throws SQLException {
 				Discuss discuss = new Discuss();
