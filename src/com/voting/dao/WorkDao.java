@@ -110,8 +110,12 @@ public class WorkDao {
 		RowMapper<Discuss> mapper = new RowMapper<Discuss>() {
 			public Discuss mapRow(ResultSet rs, int rowNum) throws SQLException {
 				Discuss discuss = new Discuss();
+				discuss.setDiscussId(rs.getInt("discuss_id"));
+				discuss.setWorksId(rs.getInt("works_id"));
 				discuss.setDiscussCommond(rs.getString("discuss_commond"));
 				discuss.setDiscussTime(rs.getDate("discuss_time"));
+				discuss.setDiscussUsername(rs.getString("discuss_username"));
+				discuss.setDiscussIp(rs.getString("discuss_ip"));
 				return discuss;
 			}
 		};
