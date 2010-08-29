@@ -1,0 +1,31 @@
+ul {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+
+html,body {
+	margin: 0;
+	padding: 20px;
+	font-size: 0.95em;
+}
+
+li {
+	margin-top: 5px;
+	padding: 5px;
+	background-color: #ffffdd;
+}
+
+#work {
+	height: 150px;
+}
+
+#work img,a img {
+	float: left;
+	vertical-align: top;
+	margin: 0 1em 1em 0;
+}
+
+.brief {
+	font-style:italic;
+}

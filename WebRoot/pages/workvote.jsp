@@ -9,24 +9,24 @@
 <link rel="stylesheet" href="css/pagination.css" />
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/jquery.pagination.js"></script>
+<script type="text/javascript" src="js/worksvote.js"></script>
+<link id="css" rel="stylesheet" href="css/workvote.css" type="text/css">
+<link id="css" rel="stylesheet" href="css/message.css" type="text/css">
 
 <script type="text/javascript">
-	function handlePaginationClick(page_index, jq){
-        return true;
-    }
-
-    function initPagination() {
-        $("#pagination").pagination(${count}, {
+	
+	function initPagination(tatalCount, currentNo) {
+        $("#pagination").pagination(tatalCount, {
             callback: handlePaginationClick,
             items_per_page: ${pageSize},
             prev_text:"上一页",
 			next_text:"下一页",
 			link_to:"workvote?pageNo=__id__",
-			current_page:${currentNo}
+			current_page:currentNo
         });
-    }
-
-    function voteAreaPageCtrl() {
+    }	
+	
+	function voteAreaPageCtrl() {
         var voteWorkNum = $('#voteCart > li').length;
     	if( voteWorkNum >0 && voteWorkNum <=<%=Constant.VOTE_WORKS_SIZE%>) {
     		$('#voteButton').removeAttr("disabled");
@@ -40,70 +40,9 @@
     	} 
     }
 	
-	function addVoteCart(item) {
-		var imageClone = item.find("img").clone();
-		var nameClone = item.find(".name").clone();
-		var link = $("<a/>", {
-			text: '删除',
-			href: item.attr('id'),
-			click: function(event){
-				event.preventDefault();
-				$(this).parents('li').remove();
-				var origin = $("#"+$(this).attr('href'));
-				origin.removeClass("added");
-				origin.find(".addLink").show();
-				commiteData("templateDeleteVotes", $(this).attr('href'));
-				voteAreaPageCtrl();
-		}
-		});
-		var p = $("<p/>").append(nameClone).append(link);
-		var voteCartLi = $("<li/>").append(imageClone).append(p);
-		$('#voteCart').append(voteCartLi);
-		voteAreaPageCtrl();
-	}
-	
-	function commiteData(method, dt){ 
-		$.ajax({
-			url: "workvote?method="+method,
-			data: {'workId': dt},	
-			type: "POST"
-		});	
-	}
-	
-	function registerAddAction() {
-		$("#articles .addLink").click(function(event){
-			event.preventDefault();
-			var item = $(this).parents('li');
-			addVoteCart(item);
-			item.addClass("added");
-			$(this).hide();
-			commiteData("templateSaveVotes", item.attr('id'));
-		});
-	}	
-    
-	function registerExistDeleteAction() {
-		$("#voteCart a").click(function(event){
-			event.preventDefault();
-			$(this).parents('li').remove();
-			var origin = $("#"+$(this).attr('href'));
-			origin.removeClass("added");
-			origin.find(".addLink").show();
-			commiteData("templateDeleteVotes", $(this).attr('href'));
-			voteAreaPageCtrl();
-		});
-	}	
-
-	function commitVoteArticalAction() {
-		$("#voteButton").click(function(event){
-			$.post("workvote?method=vote", function(data) {
-				$("#voteMsg").html(data);
-			});
-		});		
-	}
-	
 	
     $(document).ready(function(){
-        initPagination();
+        initPagination(${count}, ${currentNo});
 		registerAddAction();
 		registerExistDeleteAction();
 		commitVoteArticalAction();
@@ -124,73 +63,6 @@
 		voteAreaPageCtrl();
     });
 </script>
-
-<style type="text/css">
-ul{
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-li.added { background-color:orange; }
-
-html, body {margin:0; padding:20px; font-size:0.95em;} 
-#main {float:left; width: 60%; padding-right:10px;}
-#toVote {
-  float:right; width: 30%; 
-	min-height:300px;
-	border-style:dashed; border-width:2px;
-	text-align:center; background-color:#CCFFCC;
-}
-
-/* for ie6 \*/
-* html #toVote {height:300px}
-/* ie6 end */
-
-
-li {margin: 10px; height: 150px;}
-
-
-#articles img, a img {
-float: left;
-vertical-align: top;
-margin:0 1em 1em 0;
-}
-
-#articles .link {float:right;}
-
-
-
-.info, .success, .warning, .error, .validation {
-  border: 1px solid;
-  margin: 5px 0px;
-  padding:15px 10px;
-  background-repeat: no-repeat;
-  background-position: 10px center;
-}
-.info {
-  color: #00529B;
-  background-color: #BDE5F8;
-  background-image: url('image/icon/info.png');
-}
-.success {
-  color: #4F8A10;
-  background-color: #DFF2BF;
-  background-image:url('image/icon/success.png');
-}
-.warning {
-  color: #9F6000;
-  background-color: #FEEFB3;
-  background-image: url('image/icon/warning.png');
-}
-.error {
-  color: #D8000C;
-  background-color: #FFBABA;
-  background-image: url('image/icon/error.png');
-}
-
-</style>
-
 
 </head>
 
