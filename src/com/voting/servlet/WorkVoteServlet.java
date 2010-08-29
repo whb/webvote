@@ -65,8 +65,7 @@ public class WorkVoteServlet extends HttpServlet {
 				List<Work> works = workOperate.findWorks(workType, prePageNo, votedWorkIdsMap);
 				request.setAttribute("works", works);
 			}
-			
-			response.setCharacterEncoding("utf-8");
+
 			PrintWriter writer = response.getWriter();
 			writer.write((String)map.get("msg"));
 		} else if ("templateSaveVotes".equals(method)){//添加选择的作品
@@ -91,7 +90,6 @@ public class WorkVoteServlet extends HttpServlet {
 				workOperate.findWorkAndRecommondInfo(workId);
 			
 			Work work = (Work)workAndRecommondInfo.get("oneWork");
-			combineWorkImagePath(work);
 			request.setAttribute("work", work);
 			request.setAttribute("discussList", workAndRecommondInfo.get("disusses"));
 
@@ -106,7 +104,6 @@ public class WorkVoteServlet extends HttpServlet {
 			
 			String msg = workOperate.saveDisuss(workId, username, discussCommond);
 			
-			response.setCharacterEncoding("utf-8");
 			PrintWriter writer = response.getWriter();
 			writer.write(msg);
 			
@@ -117,12 +114,10 @@ public class WorkVoteServlet extends HttpServlet {
 			String prePageNo = getCurrentPageNo(request.getParameter("pageNo"));
 
 			List<Work> articals = workOperate.findWorks(workType, prePageNo, map);
-			combineWorkListImagePath(articals);
 			
 			int totalCount = workOperate.findTotalCount(workType);
 			
 			List<Work> simpleVoteWorks = workOperate.findTempWorks(map);
-			combineWorkListImagePath(simpleVoteWorks);
 
 			request.setAttribute("works", articals);
 			request.setAttribute("pageSize", Constant.WORK_PAGE_SIZE);
@@ -139,24 +134,6 @@ public class WorkVoteServlet extends HttpServlet {
 	}
 
 	
-	private void combineWorkListImagePath(List<Work> workList) {
-		for(int i = 0; i < workList.size(); i++){
-			String path;
-			Work work = workList.get(i);
-			combineWorkImagePath(work);
-		}
-	}
-
-	private void combineWorkImagePath(Work work) {
-		String path;
-		if (Constant.WORK_TYPE_JPG.equals(work.getWorkType())){
-			path = Constant.JPG_SMALL_PATH;
-		}else{
-			path = Constant.FLV_SMALL_PATH;
-		}
-		work.setImageUrl(path+work.getWorkFileName());
-	}
-
 	private String getWorkType(HttpServletRequest request, HttpSession session) {
 		String workType = request.getParameter("workType");
 		String seWorkType = (String)session.getAttribute("workType");

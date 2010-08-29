@@ -2,6 +2,8 @@ package com.voting.javabean;
 
 import java.util.Date;
 
+import com.voting.util.Constant;
+
 public class Work {
 	private int workId;
 	private String workTitle;
@@ -12,16 +14,12 @@ public class Work {
 	private int voteCount;
 	private boolean readyVoted;
 	private String videoUrl;
-	private String imageUrl;
 	private String workType;
 
-	
 	public String getImageUrl() {
-		return imageUrl;
-	}
-
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
+		String prefix = Constant.WORK_TYPE_JPG.equals(getWorkType()) ? Constant.JPG_SMALL_PATH
+				: Constant.FLV_SMALL_PATH;
+		return prefix + getWorkFileName();
 	}
 
 	public String getWorkType() {
@@ -103,6 +101,5 @@ public class Work {
 	public String getWorksRecommond() {
 		return worksRecommond;
 	}
-	
-	
+
 }

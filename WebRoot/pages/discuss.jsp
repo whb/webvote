@@ -13,14 +13,6 @@
 				 workId:${work.workId}},
 				function(data) {
 					$("#discussMsg").html(data);
-					
-					var comment = $("#discussCommontArea").attr("value");
-					$("#discussCommontArea").attr("value", "");
-					var d=new Date();
-					var localTime=d.getFullYear()+"-"+(d.getMonth() + 1)+"-"+d.getDate();
-					var commenTime = "评论时间："+localTime+"<br />评论内容："+comment;
-					var discussLine= $("<li/>").append(commenTime);
-					$("#discussesUl").append(discussLine);
 				}
 			)
 		});
