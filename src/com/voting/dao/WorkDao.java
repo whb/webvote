@@ -113,7 +113,7 @@ public class WorkDao {
 				discuss.setDiscussId(rs.getInt("discuss_id"));
 				discuss.setWorksId(rs.getInt("works_id"));
 				discuss.setDiscussCommond(rs.getString("discuss_commond"));
-				discuss.setDiscussTime(rs.getDate("discuss_time"));
+				discuss.setDiscussTime(rs.getTimestamp("discuss_time"));
 				discuss.setDiscussUsername(rs.getString("discuss_username"));
 				discuss.setDiscussIp(rs.getString("discuss_ip"));
 				return discuss;

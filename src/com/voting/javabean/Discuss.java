@@ -2,6 +2,9 @@ package com.voting.javabean;
 
 import java.util.Date;
 
+import com.voting.util.Constant;
+import com.voting.util.National;
+
 public class Discuss {
 	private int discussId;
 	private int worksId;
@@ -10,6 +13,15 @@ public class Discuss {
 	private String discussUsername;
 	private String discussIp;
 
+	// Virtual Property
+	public String getDiscussTimeString() {
+		return Constant.TIME_FORMAT.format(getDiscussTime());
+	}
+	
+	public String getNational() {
+		return National.parse(getDiscussIp());
+	}
+	
 	public int getDiscussId() {
 		return discussId;
 	}
@@ -57,5 +69,4 @@ public class Discuss {
 	public void setDiscussIp(String discussIp) {
 		this.discussIp = discussIp;
 	}
-
 }

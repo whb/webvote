@@ -48,13 +48,16 @@ li {
 	vertical-align: top;
 	margin: 0 1em 1em 0;
 }
+
+.brief {
+	font-style:italic;
+}
 </style>
 
 </head>
 
-<body id="discussWork">
+<body>
 
-<div id="workArea">
 <div id="work"><img src="${work.imageUrl}" />
 <p>作品名称:<span class="name">${work.workTitle}</span> <br />
 作者：${work.workAuthor}<br />
@@ -62,24 +65,23 @@ li {
 投票数：${work.voteCount}<br />
 作品介绍：${work.worksRecommond}</p>
 </div>
-</div>
+
+<div id="discussMsg"></div>
 
 <div id="discussArea">用户名： <input
 	onFocus="this.style.color='#000';if(this.value=='匿名') this.value='';"
 	onBlur="if(this.value==''){this.style.color='#CCC';this.value='匿名';}"
 	value="匿名" style="color: #CCC" type="text" id="username" /> <br />
 <textarea rows="5" cols="80" id="discussCommontArea"></textarea><br />
-<input type="button" id="btnDiscuss" value="评论" />
-<div id="discussMsg"></div>
-<br />
+<input type="button" id="btnDiscuss" value="评论" /></div>
+
 <ul id="discussesUl">
 	<c:forEach var="discuss" items="${discussList}">
-	<li id="line">
-	${discuss.discussUsername} | ${discuss.discussIp} | ${discuss.discussTime} <br />
-	${discuss.discussCommond}
-	</li>
+		<li>
+		<span class="brief">${discuss.discussUsername} |
+		${discuss.national} | ${discuss.discussTimeString} </span><br />
+		${discuss.discussCommond}</li>
 	</c:forEach>
 </ul>
-</div>
 
 </body>
