@@ -4,6 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>评论</title>
 <script type="text/javascript" src="js/jquery.js"></script>
+<link id="css" rel="stylesheet" href="css/discuss.css" type="text/css">
 <script type="text/javascript">
     $(document).ready(function(){
 		$("#btnDiscuss").click(function(event){
@@ -19,40 +20,6 @@
 		});
 	});
 </script>
-
-<style type="text/css">
-ul {
-	list-style-type: none;
-	padding: 0;
-	margin: 0;
-}
-
-html,body {
-	margin: 0;
-	padding: 20px;
-	font-size: 0.95em;
-}
-
-li {
-	margin-top: 5px;
-	padding: 5px;
-	background-color: #ffffdd;
-}
-
-#work {
-	height: 150px;
-}
-
-#work img,a img {
-	float: left;
-	vertical-align: top;
-	margin: 0 1em 1em 0;
-}
-
-.brief {
-	font-style:italic;
-}
-</style>
 
 </head>
 
