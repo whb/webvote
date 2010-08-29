@@ -44,7 +44,7 @@
 		var imageClone = item.find("img").clone();
 		var nameClone = item.find(".name").clone();
 		var link = $("<a/>", {
-			text: 'delete',
+			text: '删除',
 			href: item.attr('id'),
 			click: function(event){
 				event.preventDefault();
@@ -132,7 +132,7 @@ ul{
   margin: 0;
 }
 
-li.added { text-color:orange; }
+li.added { background-color:orange; }
 
 html, body {margin:0; padding:20px; font-size:0.95em;} 
 #main {float:left; width: 60%; padding-right:10px;}
@@ -203,7 +203,9 @@ margin:0 1em 1em 0;
 	<c:forEach var="work" items="${works}">	
 		<li id="${work.workId}" <c:if test="${work.readyVoted}">class='added'</c:if>>
 			<div class="link">
-				<a  <c:if test="${work.readyVoted}">style="display:none"</c:if> class="addLink" href="#">add</a>
+			    <c:if test="${votePeriod.active}">
+				<a  <c:if test="${work.readyVoted}">style="display:none"</c:if> class="addLink" href="#">添加投票</a>
+				</c:if>
 				<a href="workvote?method=goToDiscuss&workId=${work.workId}">评论</a>
 			</div>
 			<a href="${work.videoUrl}" class="workUrlLink"><img src="${work.imageUrl}" /></a>
@@ -219,8 +221,8 @@ margin:0 1em 1em 0;
 	<div id="pagination">pagination</div>
 </div>
 
+<c:if test="${votePeriod.active}">
 <div id="toVote">
-
 	<h3>投票区</h3>
 	<div id="voteMsg">${voteMsg}</div>
 	<ul id="voteCart">
@@ -228,7 +230,7 @@ margin:0 1em 1em 0;
 		<c:forEach var="simpleWork" items="${simpleWorks}">
 			<li>
 			<img src="${simpleWork.imageUrl}" />
-			<p><span class="name">${simpleWork.workTitle}</span><a href="${simpleWork.workId}">delete</a></p>
+			<p><span class="name">${simpleWork.workTitle}</span><a href="${simpleWork.workId}">删除</a></p>
 			</li>
 		</c:forEach>
 	</c:if>
@@ -237,5 +239,6 @@ margin:0 1em 1em 0;
 	<input type="button" id="voteButton" value="投票" />
 	</div>
 </div>
+</c:if>
 
 </body>

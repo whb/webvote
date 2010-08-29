@@ -19,10 +19,12 @@ import com.voting.javabean.Work;
 import com.voting.logic.WorksOperate;
 import com.voting.util.CommonTool;
 import com.voting.util.Constant;
+import com.voting.util.VotePeriod;
 
 public class WorkVoteServlet extends HttpServlet {
 	WebApplicationContext applicationContext;
 	WorksOperate workOperate;
+	VotePeriod votePeriod;
 
 	private static final long serialVersionUID = -2731450177616406834L;
 
@@ -31,6 +33,7 @@ public class WorkVoteServlet extends HttpServlet {
 		applicationContext = WebApplicationContextUtils
 				.getWebApplicationContext(getServletContext());
 		workOperate = (WorksOperate) applicationContext.getBean("workOperate");
+		votePeriod = new VotePeriod();
 	}
 
 	@Override
@@ -45,6 +48,7 @@ public class WorkVoteServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		String method = request.getParameter("method");
 		HttpSession session =  request.getSession();
+		request.setAttribute("votePeriod", votePeriod);
 
 		if ("vote".equals(method)) {//投票
 			
@@ -131,14 +135,6 @@ public class WorkVoteServlet extends HttpServlet {
 	}
 
 	
-	private boolean isActiveDate() {
-		/*Date date = new Date();
-		if (date.before(Constant.START_DATE) || date.after(Constant.END_DATE)) return false;
-		return true;*/
-		return false;
-	}
-
-
 	private void changeWorkFileName(List<Work> workList) {
 		for(int i = 0; i < workList.size(); i++){
 			String path;
