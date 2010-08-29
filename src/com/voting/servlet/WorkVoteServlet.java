@@ -89,8 +89,10 @@ public class WorkVoteServlet extends HttpServlet {
 
 			HashMap<Object, Object> workAndRecommondInfo = 
 				workOperate.findWorkAndRecommondInfo(workId);
-
-			request.setAttribute("work", workAndRecommondInfo.get("oneWork"));
+			
+			Work work = (Work)workAndRecommondInfo.get("oneWork");
+			combineWorkImagePath(work);
+			request.setAttribute("work", work);
 			request.setAttribute("discussList", workAndRecommondInfo.get("disusses"));
 
 			RequestDispatcher requestDispatcher = request
@@ -114,12 +116,12 @@ public class WorkVoteServlet extends HttpServlet {
 			String prePageNo = getCurrentPageNo(request.getParameter("pageNo"));
 
 			List<Work> articals = workOperate.findWorks(workType, prePageNo, map);
-			changeWorkFileName(articals);
+			combineWorkListImagePath(articals);
 			
 			int totalCount = workOperate.findTotalCount(workType);
 			
 			List<Work> simpleVoteWorks = workOperate.findTempWorks(map);
-			changeWorkFileName(simpleVoteWorks);
+			combineWorkListImagePath(simpleVoteWorks);
 
 			request.setAttribute("works", articals);
 			request.setAttribute("pageSize", Constant.WORK_PAGE_SIZE);
@@ -136,17 +138,22 @@ public class WorkVoteServlet extends HttpServlet {
 	}
 
 	
-	private void changeWorkFileName(List<Work> workList) {
+	private void combineWorkListImagePath(List<Work> workList) {
 		for(int i = 0; i < workList.size(); i++){
 			String path;
 			Work work = workList.get(i);
-			if (Constant.WORK_TYPE_JPG.equals(work.getWorkType())){
-				path = Constant.JPG_SMALL_PATH;
-			}else{
-				path = Constant.FLV_SMALL_PATH;
-			}
-			work.setImageUrl(path+work.getWorkFileName());
+			combineWorkImagePath(work);
 		}
+	}
+
+	private void combineWorkImagePath(Work work) {
+		String path;
+		if (Constant.WORK_TYPE_JPG.equals(work.getWorkType())){
+			path = Constant.JPG_SMALL_PATH;
+		}else{
+			path = Constant.FLV_SMALL_PATH;
+		}
+		work.setImageUrl(path+work.getWorkFileName());
 	}
 
 	private String getWorkType(HttpServletRequest request, HttpSession session) {

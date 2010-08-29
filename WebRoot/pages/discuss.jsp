@@ -52,7 +52,7 @@ li {margin-top: 5px; padding:5px; background-color:#ffffdd;}
 <div id="workArea">
 	<ul id="work">
 		<li>
-		<img src="image/small/${work.workFileName}"  alt="${work.workFileName}"/>
+		<img src="${work.imageUrl}" />
 		<span class="name">作品名称:${work.workTitle}</span>
 		作者：${work.workAuthor}
 		发布日期：${work.workReleaseTime}
