@@ -73,15 +73,11 @@ public class WorkVoteServlet extends HttpServlet {
 			if (voteWorkIds == null) voteWorkIds = new LinkedHashMap<String, String>();
 			voteWorkIds.put(request.getParameter("workId"),request.getParameter("workId"));
 			session.setAttribute("jpgVoteDatas", voteWorkIds);
-			System.out.println(((LinkedHashMap<String, String>)session.getAttribute("jpgVoteDatas")).size());
-			
 		}else if ("templateDeleteVotes".equals(method)){//删除选择的作品
 			
 			LinkedHashMap<String, String> workIdMap = (LinkedHashMap<String, String>)session.getAttribute("jpgVoteDatas");
 			workIdMap.remove(request.getParameter("workId"));
 			session.setAttribute("jpgVoteDatas", workIdMap);
-			System.out.println(((LinkedHashMap<String, String>)session.getAttribute("jpgVoteDatas")).size());
-			
 		}else if ("goToDiscuss".equals(method)) {//到评论页面
 			String workId = request.getParameter("workId");
 			//String workType = getWorkType(request, session);
