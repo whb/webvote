@@ -94,8 +94,9 @@ public class WorkVoteServlet extends HttpServlet {
 			String username = request.getParameter("username");
 			String discussCommond = request.getParameter("discussCommond");
 			String workId = request.getParameter("workId");
+			String remoteIp = CommonTool.getIpAddress(request);
 			
-			String msg = workOperate.saveDisuss(workId, username, discussCommond);
+			String msg = workOperate.saveDisuss(workId, username, discussCommond, remoteIp);
 			
 			PrintWriter writer = response.getWriter();
 			writer.write(msg);

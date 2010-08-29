@@ -35,8 +35,8 @@ public class WorksOperate {
 		
 		System.out.println(recommondList.size());*/
 		
-		workDao.saveDisuss("3","匿名", "测试评论测试评论3");
-		workDao.saveDisuss("4","测试用户", "测试评论测试评论4");
+/*		workDao.saveDisuss("3","匿名", "测试评论测试评论3");
+		workDao.saveDisuss("4","测试用户", "测试评论测试评论4");*/
 		
 	}
 }

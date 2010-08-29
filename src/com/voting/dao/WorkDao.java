@@ -106,7 +106,7 @@ public class WorkDao {
 
 	public List<Discuss> findDisusses(String workId) {
 		
-		String sql = "select discuss_commond, discuss_time from discuss_info where discuss_status='1' and works_id=?";
+		String sql = "select discuss_commond,discuss_time,works_id,discuss_id,discuss_username,discuss_ip  from discuss_info where discuss_status='1' and works_id=?";
 		RowMapper<Discuss> mapper = new RowMapper<Discuss>() {
 			public Discuss mapRow(ResultSet rs, int rowNum) throws SQLException {
 				Discuss discuss = new Discuss();
@@ -123,10 +123,10 @@ public class WorkDao {
 	}
 
 
-	public int saveDisuss(String workId, String username, String discussCommond) {
-		String sql = "insert into discuss_info (works_id, discuss_member, discuss_commond) values(?, ?, ?)";
+	public int saveDisuss(String workId, String username, String discussCommond, String ip) {
+		String sql = "insert into discuss_info (works_id, discuss_username, discuss_commond, discuss_ip) values(?, ?, ?,?)";
 
-		return this.jdbcTemplate.update(sql, workId, username, discussCommond);
+		return this.jdbcTemplate.update(sql, workId, username, discussCommond, ip);
 	}
 
 

@@ -74,8 +74,10 @@ li {
 <br />
 <ul id="discussesUl">
 	<c:forEach var="discuss" items="${discussList}">
-		<li id="line">评论时间：${discuss.discussTime} <br />
-		评论内容：${discuss.discussCommond}</li>
+	<li id="line">
+	评论者：${discuss.discussUsername}国籍：${discuss.discussIp}
+	评论时间：${discuss.discussTime} 评论内容：${discuss.discussCommond}
+	</li>
 	</c:forEach>
 </ul>
 </div>
