@@ -103,9 +103,9 @@ public class WorksOperate {
 	}
 
 	public String saveDisuss(String workId, String username,
-			String discussCommond) {
+			String discussCommond, String remoteIp) {
 		String msg;
-		int count = workDao.saveDisuss(workId, username, discussCommond);
+		int count = workDao.saveDisuss(workId, username, discussCommond, remoteIp);
 		if (count != 0) {
 			msg = "评论成功，等待通过审核";
 		} else {
