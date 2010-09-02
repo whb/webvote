@@ -1,5 +1,21 @@
 <%@ page contentType="text/html; charset=utf-8" language="java" errorPage="" pageEncoding="utf-8"%>
 <%@ page import="com.voting.javabean.*,com.voting.logic.*,java.util.*" %>
+<%
+  Date date=new Date();
+  int f=date.getDate()+date.getMonth()+date.getYear();
+  String flag_login = (String) session.getAttribute("flag_login");
+  if (flag_login==null) {
+    session.invalidate();
+    response.sendRedirect("login.htm");
+    return;
+  }else{
+ int flag=Integer.parseInt(flag_login);
+  if(flag!=f){
+    session.invalidate();
+    response.sendRedirect("login.htm");
+    return;}
+  }
+  %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -15,11 +31,12 @@ function leftChar(){
 	}
 }
 function showadv(){
+
 if(document.myForm.types[1].checked==true){
-var tr=document.getElementById("tr3");
-var td=tr.insertCell();
-td.innerHTML="请输入视频地址:<input name='workaddr' id='workaddr' type='text' size='12'/>";
-}else{
+alert("ddd");
+document.getElementById("showaddr").style.display='';
+} else{
+document.getElementById("showaddr").style.display='none';
 }
 }  
 
@@ -83,8 +100,9 @@ Works_info works_info=worksInfoLogic.getWorksInfoMsgByID(Integer.parseInt(works_
             <td width="8%" align="right" valign="middle"><font color="#FF0000">作品类型</font></td>
             <td width="1%" height="28" valign="middle">&nbsp;</td>
             <%String works_type=works_info.getWorks_type();%>
-            <td >图片 <input name="types" type="radio" value="jpg" <%=works_type.equals("jpg")?"checked='checked'":""%>/> 视频 <input name="types" type="radio" value="flv"  <%=works_type.equals("flv")?"checked='checked'":""%>  onclick="showadv()"/>
-            <%if(works_type.equals("flv")){ %> 视频地址:<input name='workaddr' id='workaddr' type='text' size='12' value="<%=works_info.getWorks_addr()%>"/><%}%></td>
+            <td >图片 <input name="types" type="radio" value="jpg" <%=works_type.equals("jpg")?"checked='checked'":""%>  onclick="showadv()"/> 视频 <input name="types" type="radio" value="flv"  <%=works_type.equals("flv")?"checked='checked'":""%>  onclick="showadv()"/></td>
+            <td>
+            <%if(works_type.equals("flv")){ %> <div id="showaddr" style="display:">视频地址:<input name='workaddr' id='workaddr' type='text' size='28' value="<%=works_info.getWorks_addr()%>"/></div><%}%></td>
              
           </tr>
           <tr> 

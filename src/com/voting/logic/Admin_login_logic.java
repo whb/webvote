@@ -1,10 +1,9 @@
 package com.voting.logic;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-
 import com.voting.util.DataBaseConnection;
+import java.sql.ResultSet;
+import java.sql.PreparedStatement;
 
 //查询管理员表
 public class Admin_login_logic {

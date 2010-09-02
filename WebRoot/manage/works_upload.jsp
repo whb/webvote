@@ -22,6 +22,11 @@
 <script language="javascript" type="text/javascript">
 function checkImg(){
 	var file=document.getElementById("FILE1").value
+	var title=document.getElementById('title').value
+	if(title==''){
+	alert("请输入标题");
+	return false;
+	}
 	if(file==""){
 		alert("请选择上传文件");
 		return false;
@@ -44,12 +49,11 @@ function leftChar(){
 }
 function showadv(){
 if(document.myForm.types[1].checked==true){
-var tr=document.getElementById("tr3");
-var td=tr.insertCell();
-td.innerHTML="请输入视频地址:<input name='workaddr' id='workaddr' type='text' size='12'/>";
-}else{
+document.getElementById("showaddr").style.display='';
+} else{
+document.getElementById("showaddr").style.display='none';
 }
-}  
+} 
 
 
 </script>
@@ -98,7 +102,8 @@ td.innerHTML="请输入视频地址:<input name='workaddr' id='workaddr' type='t
           <tr id="tr3"> 
             <td width="8%" align="right" valign="middle"><font color="#FF0000">作品类型</font></td>
             <td width="1%" height="28" valign="middle">&nbsp;</td>
-            <td >图片 <input name="types" type="radio" value="jpg" /> 视频 <input name="types" type="radio" value="flv"  onclick="showadv()"/></td>
+            <td >图片 <input name="types" type="radio" value="jpg" checked='checked' onclick="showadv()"/> 视频 <input name="types" type="radio" value="flv"  onclick="showadv()"/></td>
+            <td ><div id="showaddr" style="display:none">请输入视频地址址:<input name='workaddr' id='workaddr' type='text' size='28' /></div></td>
              
           </tr>
           <tr> 

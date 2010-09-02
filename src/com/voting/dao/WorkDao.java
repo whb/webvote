@@ -135,11 +135,17 @@ public class WorkDao {
 		RowMapper<Work> mapper = new RowMapper<Work>() {
 			public Work mapRow(ResultSet rs, int rowNum) throws SQLException {
 				Work work = new Work();
-				work.setVideoUrl(rs.getString("video_url"));
+				work.setPreViewUrl(rs.getString("video_url"));
 				return work;
 			}
 		};
 		return this.jdbcTemplate.query(sql,mapper , workId);
+	}
+
+
+	public int findVoteCount(String workId) {
+		String sql = "select count(*) from vote_info where works_id = ?";	
+		return this.jdbcTemplate.queryForInt(sql, workId);
 	}
 
 }

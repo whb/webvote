@@ -9,7 +9,7 @@ li.added { background-color:orange; }
 html, body {margin:0; padding:20px; font-size:0.95em;} 
 #main {float:left; width: 60%; padding-right:10px;}
 #toVote {
-  float:right; width: 30%; 
+	float:right; width: 30%; 
 	min-height:300px;
 	border-style:dashed; border-width:2px;
 	text-align:center; background-color:#CCFFCC;

@@ -29,10 +29,15 @@ public class WorksOperate {
 				Work work = worksList.get(m);
 				List<Work> urlList = workDao.findVideoUrl(work.getWorkId());
 				if (urlList.size() > 0) {
-					work.setVideoUrl(((Work) urlList.get(0)).getVideoUrl());
+					work.setPreViewUrl(((Work) urlList.get(0)).getPreViewUrl());
 				} else {
-					work.setVideoUrl("");
+					work.setPreViewUrl("");
 				}
+			}
+		}else{
+			for (int m = 0; m < worksList.size(); m++) {
+				Work work = worksList.get(m);
+				work.setPreViewUrl(Constant.PRE_SEE_PAGE_URL+work.getWorkId());
 			}
 		}
 
@@ -57,13 +62,13 @@ public class WorksOperate {
 		HashMap<Object, Object> map = new HashMap<Object, Object>();
 		if (worksMap == null || worksMap.size() == 0) {
 			// message? no works to vote
-			map.put("msg", "请选择投票作品");
+			map.put("msg", "w请选择投票作品");
 			map.put("flag", fail);
 		} else if (workDao.findVoteTime(ip) != 0) {// check if the same ip vote
 													// again in 3 minute could
 													// not vote
 			// message? step time < 3 minute wait next time
-			map.put("msg", "您已投票，请等候3分钟方可继续投票");
+			map.put("msg", "w您已投票，请等候3分钟方可继续投票");
 			map.put("flag", fail);
 		} else if (worksMap.size() > Constant.VOTE_WORKS_SIZE) {
 			// message? select to vote works more than 5
@@ -73,11 +78,11 @@ public class WorksOperate {
 			int votedCount = workDao.saveVotes(worksMap, ip);
 			if (votedCount == 0) {
 				// message insert fail
-				map.put("msg", "投票失败");
+				map.put("msg", "w投票失败");
 				map.put("flag", fail);
 			} else {
 				// message insert success
-				map.put("msg", "投票成功");
+				map.put("msg", "s投票成功");
 				map.put("flag", !fail);
 			}
 		}
@@ -126,6 +131,10 @@ public class WorksOperate {
 			workList.add(work);
 		}
 		return workList;
+	}
+
+	public int findVoteCount(String workId) {
+		return workDao.findVoteCount(workId);
 	}
 
 }

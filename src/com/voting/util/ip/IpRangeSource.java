@@ -16,7 +16,7 @@ public class IpRangeSource {
 			URL url = Thread.currentThread().getContextClassLoader()
 					.getResource(resouceClasspathName);
 			InputStream is = url.openStream();
-			InputStreamReader in = new InputStreamReader(is, "GBK");
+			InputStreamReader in = new InputStreamReader(is, "UTF-8");
 			BufferedReader br = new BufferedReader(in);
 
 			String line;
@@ -35,11 +35,18 @@ public class IpRangeSource {
 	}
 
 	public String query(String ip) {
-		for (int i = 0; i < ipRanges.size(); i++) {
-			IpRange ipRange = ipRanges.get(i);
-			if (ipRange.contain(ip)) {
-				return ipRange.getDescription();
+		int i = 0;
+		try {
+			for (i = 0; i < ipRanges.size(); i++) {
+				IpRange ipRange = ipRanges.get(i);
+				if (ipRange.contain(ip)) {
+					return ipRange.getDescription();
+				}
 			}
+
+		} catch (Exception e) {
+			System.out.print("i: " + i + " ****ipRanges.get(i):***"
+					+ ipRanges.get(i));
 		}
 		return "未知位置";
 	}

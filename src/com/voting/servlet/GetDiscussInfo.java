@@ -1,6 +1,7 @@
 package com.voting.servlet;
 
 import java.io.IOException;
+
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
@@ -10,7 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.voting.javabean.Discuss_info;
+import com.voting.javabean.Works_info;
 import com.voting.logic.DiscussInfoLogic;
+import com.voting.logic.WorksInfoLogic;
+import com.voting.util.ip.National;
 
 public class GetDiscussInfo extends HttpServlet {
 
@@ -45,16 +49,20 @@ public class GetDiscussInfo extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		DiscussInfoLogic discussInfo=new DiscussInfoLogic();
 		String works_id=request.getParameter("works_id");
+		WorksInfoLogic worksInfoLogic=new WorksInfoLogic();
+		Works_info works_info=(Works_info)worksInfoLogic.getWorksInfoMsgByID(Integer.parseInt(works_id));
 		ArrayList list=discussInfo.getDiscussInfo(Integer.parseInt(works_id));
 		StringBuffer sb=new StringBuffer("<table style=\"width: 545px;\" id=\"picInfo\">");
 		if(list.size()>0){
 		for(int i=0;i<list.size();i++){
 			Discuss_info discuss_info=(Discuss_info)list.get(i);
 			sb.append("<tr>");
-			sb.append("<td align=\"left\">评论内容:</td>");
-			sb.append("<td align=\"left\">"+discuss_info.getDiscuss_commond()+"</td>");
-			sb.append("<td align=\"left\">评论时间:</td>");
-			sb.append("<td align=\"left\">"+discuss_info.getDiscuss_time().substring(0,19)+"</td>");
+			sb.append("<td style=\"width:100px\" align=\"left\"><img src=\"images/avataronline.gif\" width=\"16\" height=\"16\" />"+discuss_info.getDiscuss_username()+"</td>");
+			sb.append("<td style=\"width:180px\" align=\"center\">"+National.parse(discuss_info.getDiscuss_ip())+"</td>");
+			sb.append("<td style=\"width:180px\" align=\"right\">"+discuss_info.getDiscuss_time().substring(0,19)+"</td>");
+			sb.append("</tr>");
+			sb.append("<tr>");
+			sb.append("<td colspan=\"3\" align=\"left\">"+discuss_info.getDiscuss_commond()+"</td>");
 			sb.append("</tr>");
 		}
 		}else{

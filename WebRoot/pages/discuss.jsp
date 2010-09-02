@@ -5,41 +5,26 @@
 <title>评论</title>
 <script type="text/javascript" src="js/jquery.js"></script>
 <link id="css" rel="stylesheet" href="css/discuss.css" type="text/css">
-<script type="text/javascript">
-
-	function validationItems(name, common){
-		$("#discussMsg").empty();
-		var checkflag = true;
-		if(name.length<2 || name.length > 20){
-			$("#discussMsg").append("用户名必须在2-20个字符之间").append("<br />");
-			checkflag = false;
-		}
-		
-		if(common == null || common.length == 0){
-			$("#discussMsg").append("请填写评论内容").append("<br />");
-			checkflag = false;
-		}else if(name.length<10 || name.length > 450){
-			$("#discussMsg").append("评论内容必须在10-450个字符之间");
-			checkflag = false;
-		}
-		return checkflag;
-	}
-	
+<link id="css" rel="stylesheet" href="css/message.css" type="text/css">
+<script type="text/javascript" src="js/discuss.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript">		
     $(document).ready(function(){
 	
 		$("#btnDiscuss").click(function(event){
 			var name = $("#username").attr("value");
 			var common = $("#discussCommontArea").attr("value");
 			
+			$("#discussMsg").empty().removeClass();
 			if (validationItems(name, common) == true){
-			
 				$.post("workvote?method=discuss",
 						{username: name, 
 						 discussCommond: common,
 						 workId:${work.workId}},
 						function(data) {
 							$('#discussMsg').html(data);
-							$('#discussMsg').delay(5000).fadeOut(1500);
+							$('#discussMsg').addClass('success');
+							messageFade($("#discussMsg"));
 						}
 				)
 			}
@@ -50,7 +35,7 @@
 </head>
 
 <body>
-
+<div id="goBack"><a href="workvote">返回</a></div>
 <div id="work"><img src="${work.imageUrl}" />
 <p>作品名称:<span class="name">${work.workTitle}</span> <br />
 作者：${work.workAuthor}<br />

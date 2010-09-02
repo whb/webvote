@@ -6,9 +6,20 @@ public class Ip {
 	public Ip(String ip) {
 		String[] ipStrings = ip.split("\\.");
 		ips = new int[ipStrings.length];
-		for (int i = 0; i < ipStrings.length; i++) {
-			ips[i] = Integer.parseInt(ipStrings[i]);
+		for (int i = 0; i < ipStrings.length; i++) {		
+			String dealedIp = removeIpHeadZero(ipStrings[i]);
+			ips[i] = Integer.parseInt(dealedIp);
 		}
+	}
+
+	private String removeIpHeadZero(String ip) {
+		String noHeadIp = ip.trim();
+		if (noHeadIp.length()>1 && noHeadIp.startsWith("0")){
+			noHeadIp = noHeadIp.substring(1);
+			removeIpHeadZero(noHeadIp);
+		}
+				
+		return noHeadIp;
 	}
 
 	public int compareTo(Ip other) {

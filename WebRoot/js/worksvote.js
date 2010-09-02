@@ -57,8 +57,17 @@
 
 	function commitVoteArticalAction() {
 		$("#voteButton").click(function(event){
+			$('#voteMsg').empty().removeClass();
 			$.post("workvote?method=vote", function(data) {
-				$("#voteMsg").html(data);
+				$("#voteMsg").html(data.substring(1, data.length));
+				if(data.substring(0,1) == 's'){
+					$('#voteMsg').addClass('success');
+				}else if(data.substring(0,1) == 'w'){
+					$('#voteMsg').addClass('warning');
+				}else{
+					$('#voteMsg').addClass('info');
+				}
+				messageFade($('#voteMsg'));
 			});
 		});		
 	}

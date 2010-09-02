@@ -20,10 +20,29 @@ li {
 	height: 150px;
 }
 
+#work p {
+	float: left;
+	width: 70%;
+	margin: 0;
+}
+
 #work img,a img {
 	float: left;
 	vertical-align: top;
 	margin: 0 1em 1em 0;
+}
+
+#discussMsg {
+	text-align:center;
+	width:300px;
+}
+
+#goBack {
+	float: right;
+	text-align:center;
+	border-style:dashed; border-width:2px;
+	width:100px;
+	background-color:orange;
 }
 
 .brief {

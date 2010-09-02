@@ -13,7 +13,7 @@ public class Work {
 	private Date workReleaseTime;
 	private int voteCount;
 	private boolean readyVoted;
-	private String videoUrl;
+	private String preViewUrl;
 	private String workType;
 
 	public String getImageUrl() {
@@ -86,12 +86,12 @@ public class Work {
 		this.workReleaseTime = workReleaseTime;
 	}
 
-	public String getVideoUrl() {
-		return videoUrl;
+	public String getPreViewUrl() {
+		return preViewUrl;
 	}
 
-	public void setVideoUrl(String videoUrl) {
-		this.videoUrl = videoUrl;
+	public void setPreViewUrl(String preViewUrl) {
+		this.preViewUrl = preViewUrl;
 	}
 
 	public void setWorksRecommond(String worksRecommond) {

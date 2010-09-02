@@ -59,13 +59,6 @@ public class WorkVoteServlet extends HttpServlet {
 
 			HashMap<Object, Object> map = workOperate.saveCheckedWorks(votedWorkIdsMap, remoteIp);
 			boolean insertFlay = (Boolean)map.get("flag");
-			if (insertFlay == true) {
-				String prePageNo = request.getParameter("pageNo");
-				String workType = getWorkType(request, session);
-				
-				List<Work> works = workOperate.findWorks(workType, prePageNo, votedWorkIdsMap);
-				request.setAttribute("works", works);
-			}
 
 			PrintWriter writer = response.getWriter();
 			writer.write((String)map.get("msg"));
@@ -82,6 +75,8 @@ public class WorkVoteServlet extends HttpServlet {
 		}else if ("goToDiscuss".equals(method)) {//到评论页面
 			String workId = request.getParameter("workId");
 			Work work = workOperate.findWork(workId);
+			int voteCount = workOperate.findVoteCount(workId);
+			work.setVoteCount(voteCount);
 			List<Discuss> discussList = workOperate.findRecommondInfo(workId); 
 			request.setAttribute("work", work);
 			request.setAttribute("discussList", discussList);

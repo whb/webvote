@@ -8,7 +8,7 @@ import java.sql.SQLException;
 public class DataBaseConnection {
     public static synchronized Connection getConnection(){
     	Connection conn=null;
-    	String url="jdbc:mysql://192.168.1.168:3306/oushi_vote?user=root&password=adzzz&useUnicode=true&characterEncoding=utf8";
+    	String url="jdbc:mysql://localhost:3306/oushi_vote?user=root&password=123456&useUnicode=true&characterEncoding=utf8";
     	try {
 			Class.forName("org.gjt.mm.mysql.Driver");
 		} catch (ClassNotFoundException e) {

@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8" language="java" import="java.sql.*" errorPage="" %>
-<%@ page import="com.voting.javabean.*,com.voting.logic.*,java.util.*" %>
+<%@ page import="com.voting.javabean.*,com.voting.logic.*,java.util.*,com.voting.util.ip.National;" %>
 <%
 response.addHeader("pragma", "no-cache");
 response.addHeader("cache-control", "no-cache,must-revalidate");
@@ -14,7 +14,16 @@ response.addHeader("expires", "0"); %>
 <meta name="keywords" content="作品预览" />
 <meta name="description" content="作品预览" />
 <link rel="stylesheet" href="css/css.css">
+<link rel="stylesheet" href="css/message.css">
 <script language="javascript" src="js/make.js"></script>
+<style type="text/css">
+<!--
+.STYLE1 {
+	font-size: 24px;
+	font-weight: bold;
+}
+-->
+</style>
 </HEAD>
 <body>
 <br><br>
@@ -30,7 +39,17 @@ work_id=Integer.parseInt(works_id);
 WorksInfoLogic worksInfoLogic=new WorksInfoLogic();
 Works_info works_info1=(Works_info)worksInfoLogic.getWorksInfoMsgByID(work_id);
 String srcFileName=works_info1.getWorks_file_name();
+String title=works_info1.getWorks_title();
 %>
+<div id="goBack"><a href="workvote">返回</a></div>
+<br/>
+<center><div id="st"class="STYLE1">作品描述：<%=title%></div>
+</center>
+<br/>
+<br/>
+<br/>
+
+
 <center>
 <!--图片显示框--><div id="container"><div style="width: 800px;" id="imgContainer">
 <div style="width: 650px;" id="detailImg">
@@ -78,7 +97,9 @@ if(discussList.size()>0){
 for(int i=0;i<discussList.size();i++){
 Discuss_info discuss_info=(Discuss_info)discussList.get(i);
 %>
-<tr><td align="left">评论内容:</td><td align="left"><%=discuss_info.getDiscuss_commond()%></td><td align="left">评论时间:</td><td align="left"><%=discuss_info.getDiscuss_time().substring(0,19)%></td></tr>
+
+<tr><td style="width:100px" align="left"><img src="images/avataronline.gif" width="16" height="16" /><%=discuss_info.getDiscuss_username()%></td><td style="width:180px" align="center"><%=National.parse(discuss_info.getDiscuss_ip())%></td><td style="width:180px" align="right"><%=discuss_info.getDiscuss_time().substring(0,19)%></td></tr>
+<tr><td colspan="3" align="left"><%=discuss_info.getDiscuss_commond()%></td></tr>
 <%
 }
 }else{
@@ -155,8 +176,9 @@ for(i=0;i<imgs.length;i++){
 	  if(k==this.name){
 
 	    $('pn_'+k).className = 'select';
+		makeWorks(this.id,'st');
 		makeDiscuss(this.id,'desc');
-		// $('works_id').value=this.id;
+	   $('works_id').value=this.id;
 		
 		//$('desc').innerHTML="sdfdfdfdfdf";
 		//window.location.href="content.jsp?works_id="+$('works_id').value;
@@ -223,13 +245,14 @@ for(i=0;i<imgs.length;i++){
 </script>
 </div><div id="ecomContainer"><div id="imContainer"></div></div></div>
 
-<div style="clear: both;"></div>
+<div style="clear: both;">
+
+</div>
+
+
 <!-- 页尾声明-->
 </center>
+
+
 <br><br>
-<!--
-<div>代码整理：<a href="http://www.lycode.com" target="_blank" style="color:blue">代码库</a>　来源：<a href="http://www.lycode.com" target="_blank">原创</a>  样式来源 : <a href="http://www.baidu.com" target="_blank">百度</a><br>
-＊尊重他人劳动成果，转载请自觉注明出处！注：此代码仅供学习交流，请勿用于商业用途。
-</div>
--->
 </body></html>

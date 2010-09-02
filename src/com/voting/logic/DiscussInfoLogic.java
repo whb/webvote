@@ -15,7 +15,7 @@ public class DiscussInfoLogic {
 		Connection conn=null;
 		PreparedStatement ps=null;
 		ResultSet rs=null;
-		String sql="select discuss_commond,discuss_time from discuss_info where works_id=? and discuss_status=1";
+		String sql="select discuss_commond,discuss_time,discuss_username,discuss_ip from discuss_info where works_id=? and discuss_status=1";
 		try{
 		conn=DataBaseConnection.getConnection();
 		ps=conn.prepareStatement(sql);
@@ -25,6 +25,8 @@ public class DiscussInfoLogic {
 			Discuss_info discuss_info=new Discuss_info();
 			discuss_info.setDiscuss_commond(rs.getString("discuss_commond"));
 			discuss_info.setDiscuss_time(rs.getString("discuss_time"));
+			discuss_info.setDiscuss_username(rs.getString("discuss_username"));
+			discuss_info.setDiscuss_ip(rs.getString("discuss_ip"));
 			list.add(discuss_info);
 		}
 		}catch(Exception ex){

@@ -10,6 +10,7 @@
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/jquery.pagination.js"></script>
 <script type="text/javascript" src="js/worksvote.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
 <link id="css" rel="stylesheet" href="css/workvote.css" type="text/css">
 <link id="css" rel="stylesheet" href="css/message.css" type="text/css">
 
@@ -37,6 +38,7 @@
     	$('#voteMsg').empty().removeClass();
     	if( voteWorkNum ><%=Constant.VOTE_WORKS_SIZE%>) {
     		$('#voteMsg').addClass('warning').append("您选择的作品超过5件");
+			messageFade($('#voteMsg'));
     	} 
     }
 	
@@ -80,7 +82,7 @@
 				</c:if>
 				<a href="workvote?method=goToDiscuss&workId=${work.workId}">评论</a>
 			</div>
-			<a href="${work.videoUrl}" class="workUrlLink"><img src="${work.imageUrl}" /></a>
+			<a href="${work.preViewUrl}" class="workUrlLink"><img src="${work.imageUrl}" /></a>
 			<p>
 			作品名称：<span class="name">${work.workTitle}</span><br />
 			作者：${work.workAuthor}<br />

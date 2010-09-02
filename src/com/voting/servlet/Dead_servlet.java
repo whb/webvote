@@ -1,12 +1,9 @@
 package com.voting.servlet;
 
-import java.io.IOException;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.*;
+import javax.servlet.http.*;
+import java.io.*;
+import java.util.*;
 
 public class Dead_servlet extends HttpServlet {
     private static final String CONTENT_TYPE = "text/html; charset=UTF-8";

@@ -1,12 +1,9 @@
 package com.voting.servlet;
 
-import java.io.IOException;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import javax.servlet.*;
+import javax.servlet.http.*;
+import java.io.*;
+import java.util.*;
 import com.voting.logic.Works_info_discuss_info_logic;
 public class Discuss_status_servlet extends HttpServlet {
     private static final String CONTENT_TYPE = "text/html; charset=UTF-8";
@@ -25,7 +22,7 @@ public class Discuss_status_servlet extends HttpServlet {
         //修改数据库中的记录
         new Works_info_discuss_info_logic().update_discuss_status(discuss_id,discuss_status);
         //跳转回评论管理页
-        response.sendRedirect("manage/discuss_admin.jsp");
+        response.sendRedirect("manage/discuss_edit.jsp");
     }
     public void destroy() {
     }

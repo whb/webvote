@@ -6,6 +6,20 @@ public class Discuss_info {
 	private String discuss_commond;                            //评论内容
 	private String discuss_time;                                //评论时间
 	private String discuss_status;                             //评论发布状态0未发表 1发布
+	private String discuss_username;                           //评论人
+	private String discuss_ip;                                 //评论IP
+	public String getDiscuss_ip() {
+		return discuss_ip;
+	}
+	public void setDiscuss_ip(String discussIp) {
+		discuss_ip = discussIp;
+	}
+	public String getDiscuss_username() {
+		return discuss_username;
+	}
+	public void setDiscuss_username(String discussUsername) {
+		discuss_username = discussUsername;
+	}
 	public int getDiscuss_id() {
 		return discuss_id;
 	}

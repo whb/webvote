@@ -38,8 +38,8 @@ a:hover{color:#f60}
 function del(workid){
 if(confirm("确认删除吗")){
   document.editForm.works_id.value=workid;
-  document.getElementById("editForm").method='POST';
-  document.getElementById("editForm").submit();
+  document.editForm.method='POST';
+  document.editForm.submit();
   window.location.reload();
 
   }else{
