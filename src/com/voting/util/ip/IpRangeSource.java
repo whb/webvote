@@ -35,18 +35,11 @@ public class IpRangeSource {
 	}
 
 	public String query(String ip) {
-		int i = 0;
-		try {
-			for (i = 0; i < ipRanges.size(); i++) {
-				IpRange ipRange = ipRanges.get(i);
-				if (ipRange.contain(ip)) {
-					return ipRange.getDescription();
-				}
+		for (int i = 0; i < ipRanges.size(); i++) {
+			IpRange ipRange = ipRanges.get(i);
+			if (ipRange.contain(ip)) {
+				return ipRange.getDescription();
 			}
-
-		} catch (Exception e) {
-			System.out.print("i: " + i + " ****ipRanges.get(i):***"
-					+ ipRanges.get(i));
 		}
 		return "未知位置";
 	}

@@ -7,8 +7,7 @@ public class Ip {
 		String[] ipStrings = ip.split("\\.");
 		ips = new int[ipStrings.length];
 		for (int i = 0; i < ipStrings.length; i++) {		
-			String dealedIp = removeIpHeadZero(ipStrings[i]);
-			ips[i] = Integer.parseInt(dealedIp);
+			ips[i] = Integer.parseInt(ipStrings[i]);
 		}
 	}
 
